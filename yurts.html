@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="description" content="Describes what a Yurt is and what it is made of. Displays Yurts packages and prices.">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pacific Trails Resort :: Yurts</title>
+    <link rel="stylesheet" href="CSS/main.css">
+    <link rel="stylesheet" href="CSS/responsive-design.css">
+    <script src="pacific.js"></script>
+    <script src="https://kit.fontawesome.com/878ee0d378.js" crossorigin="anonymous"></script>
+    <!--if lt IE 9-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
+</head>
+
+<body>
+    <header>
+        <h1 class="headerText">Pacific Trails Resort</h1>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="yurts.html">Yurts</a></li>
+                <li><a href="activities.html">Activities</a></li>
+                <li><a href="reservations.html">Reservations</a></li>
+            </ul>
+            <button class="hamburger">
+                <span class="bar"></span>
+            </button>
+        </nav>
+    </header>
+    <nav class="mobile-nav">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="yurts.html">Yurts</a></li>
+            <li><a href="activities.html">Activities</a></li>
+            <li><a href="reservations.html">Reservations</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <article>
+            <h2>The Yurts at Pacific Trails</h2>
+
+            <dl>
+                <dt>What is a yurt?</dt>
+                <dd>Our luxury yurts are permanent structures four feet off the ground. Each yurt has canvas walls, a wooden floor, and a roof dome that can be opened.</dd>
+
+                <dt>How are the yurts furnished?</dt>
+                <dd>Each yurt is furnished with a queen-size bed with down quilt and gas-fired stove. The luxury camping experience also includes electricity and a sink with hot and cold running water. Shower and restroom facilities are located in the lodge.</dd>
+                <dt>What should I bring?</dt>
+                <dd>Bring a sense of adventure and some time to relax! Most guests also pack comfortable walking shoes and plan to dress for changing weather with layers of clothing.</dd>
+            </dl>
+        </article>
+
+        <section>
+            <h3 id="h3Yurts">Yurt Packages</h3>
+            <p class="pYurts">A variety of luxury yurt packages are available. Choose a package below and contact us to begin your reservation. We’re happy to build a custom package just for you!</p>
+
+            <h4 id="h4Yurts">Select your preferred package:</h4>
+            <aside id="packageChoices">
+                <figure id="weekendEscape" class="packageChoice" draggable="true" ondragstart="drag(event)">
+                    <img src="images/yurt-image1.jpg" alt="Weekend Escape Yurt">
+                    <figcaption>Weekend Escape</figcaption>
+                </figure>
+                <figure id="zenRetreat" class="packageChoice" draggable="true" ondragstart="drag(event)">
+                    <img src="images/yurt-image2.jpg" alt="Zen Retreat Yurt">
+                    <figcaption>Zen Retreat</figcaption>
+                </figure>
+                <figure id="kayakAway" class="packageChoice" draggable="true" ondragstart="drag(event)">
+                    <img src="images/yurt-image3.jpg" alt="Kayak Away Yurt">
+                    <figcaption>Kayak Away</figcaption>
+                </figure>
+            </aside>
+            <aside id="dropZone" ondrop="drop(event)" ondragover="allowDrop(event)">Drag your package here</aside>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Package Name</th>
+                        <th>Description</th>
+                        <th>Nights</th>
+                        <th>Cost per Person</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Weekend Escape</td>
+                        <td>Two breakfasts, a trail map, a picnic snack</td>
+                        <td>2 nights</td>
+                        <td class="price">$450</td>
+                    </tr>
+
+                    <tr>
+                        <td>Zen Retreat</td>
+                        <td>Four breakfasts, a trail map, a pass for daily yoga</td>
+                        <td>4 nights</td>
+                        <td class="price">$600</td>
+                    </tr>
+
+                    <tr>
+                        <td>Kayak Away</td>
+                        <td>Two breakfasts, two hours of kayak rental daily, a trail map</td>
+                        <td>2 nights</td>
+                        <td class="price">$500</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <footer>
+        <aside class="footer-container">
+            <section class="footer-section">
+                <h4>Contact Us</h4>
+                <p>Pacific Trails Resort<br>
+                    12010 Pacific Trails Road<br>
+                    Zephyr, CA 95555<br>
+                    <a href="tel:888-555-5555"><i class="fa-solid fa-phone-volume"></i>888-555-5555</a>
+                </p>
+            </section>
+
+            <section class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="yurts.html">Yurts</a></li>
+                    <li><a href="activities.html">Activities</a></li>
+                    <li><a href="reservations.html">Reservations</a></li>
+                </ul>
+            </section>
+
+            <section class="footer-section">
+                <h4>Follow Us</h4>
+                <p>Stay connected with us:</p>
+                <a href="https://facebook.com"><i class="fa-brands fa-facebook fa-2x"></i></a>
+                <a href="https://instagram.com"><i class="fa-brands fa-square-instagram fa-2x"></i></a>
+                <a href="https://twitter.com"><i class="fa-brands fa-square-x-twitter fa-2x"></i></a>
+            </section>
+        </aside>
+
+        <aside class="footer-bottom">
+            <p>&copy; 2023 Pacific Trails Resort</p>
+            <a href="mailto:yourfirstname@yourlastname.com">guy@charles.com</a>
+        </aside>
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="CSS/common.css"></script>
+</body></html>

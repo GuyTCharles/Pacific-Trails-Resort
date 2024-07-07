@@ -1,0 +1,534 @@
+/* VARIABLES FOR COLORS */
+:root {
+    --headerFooterColor: #003366;
+    --textColor1: #000000;
+    --textColor2: #ffffff;
+    --navbarColor: #800020;
+    --hoverColor: #ffa500;
+    --tableColor1: #ADD8E6;
+    --tableColor2: #36454F;
+    --tableColor3: #E4F4F3;
+    --tableColor4: #7FFFD4;
+    --tableColor5: #008000;
+    --borderColor1: #ccc;
+    --borderColor2: #444;
+    --borderColor3: #666;
+    --borderColor4: #999;
+    --linksColor: #ffa500;
+    --backgroundColor: #f9f9f9;
+    --hoverBackgroundColor: #e0e0e0;
+    --buttonBackgroundColor: #4CAF50;
+    --buttonHoverColor: #45a049;
+    --buttonActiceColor: #3e8e41;
+    --dropzoneColor1: #f8f8f8;
+    --dropzoneColor2: #e0e0e0;
+    --formBackgroundColor: #f4f4f4;
+    --footerBackgroundColor: #003366;
+    --hamburgerMenu-navColor: #C20E35;
+    --mobile-navAColor: #A8415B;
+    --mobile-navAHoverColor: #953A51;
+}
+
+/* Reset margins and paddings for all elements */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/* BODY AND HTML STYLES */
+body,
+html {
+    height: 100%;
+    /* Full height of the viewport */
+    font-family: 'Proxima Nova', Arial, sans-serif;
+    /* Consistent font throughout the site */
+    line-height: 1.6;
+    /* Line height for readability */
+    color: var(--textColor1);
+    /* Default text color */
+    background-image: url(/images/background.jpg);
+    display: flex;
+    flex-direction: column;
+    scroll-behavior: smooth;
+}
+
+/* Header and Footer Styles */
+.headerText,
+footer {
+    background-color: var(--headerFooterColor);
+    color: var(--textColor2);
+    text-align: center;
+    padding: 25px 0;
+    font-size: 35px;
+}
+
+.hamburger,
+.mobile-nav {
+    display: none;
+}
+
+/* Navigation Styles */
+nav ul {
+    background-color: var(--navbarColor);
+    overflow: hidden;
+    text-align: center;
+    font-size: 18px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+nav ul li {
+    display: inline;
+    padding: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: var(--textColor2);
+}
+
+nav ul li a:hover {
+    color: var(--hoverColor);
+}
+
+/* Main Content Style */
+main {
+    background: var(--backgroundColor);
+    flex-grow: 1;
+    padding: 20px;
+    /* Adjust based on footer's height */
+    margin-left: 12%;
+    margin-right: 12%;
+}
+
+article {
+    font-size: 17px;
+}
+
+/* Heading Styles */
+h2 {
+    color: var(--headerFooterColor);
+    margin-bottom: 10px;
+}
+
+h3 {
+    margin-top: 12px;
+}
+
+/* Font Styles */
+h4,
+#h4Yurts,
+.pYurts,
+.pReserv {
+    font-size: 17px;
+}
+
+#h4Yurts {
+    margin-top: 20px;
+}
+
+dt {
+    font-weight: bold;
+}
+
+dd {
+    margin-left: 30px;
+}
+
+/* HOME PAGE STYLES */
+.homePage-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin-top: 12px;
+    margin-bottom: 20px;
+}
+
+#text-videoContainer {
+    display: flex;
+    flex-direction: row;
+    /* Align items horizontally */
+}
+
+.indexText {
+    flex: 1;
+    /* Allows text to grow and shrink as needed */
+    font-size: 18px;
+    margin-top: 18px;
+    margin-right: 15px;
+    list-style: inside;
+}
+
+.indexP {
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.resortName {
+    font-size: 19px;
+    font-variant: small-caps;
+}
+
+.videoDisplay {
+    flex: 1;
+    /* Allows video to grow and shrink as needed */
+    margin-left: 15px;
+    margin-top: 25px;
+    margin-bottom: 30px;
+}
+
+video {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    border: 1px solid var(--borderColor2);
+}
+
+
+/* YURTS PAGE STYLES */
+/* Drag and Drop Feature Styles */
+#packageChoices {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    /* Center the items in the container */
+    flex-wrap: wrap;
+    /* Wrap items to new line if necessary */
+    position: relative;
+    /* Ensure the figure is the positioning context */
+}
+
+.packageChoice {
+    width: 14%;
+    /* Set a fixed width */
+    height: 120px;
+    /* Allow height to adjust to the content */
+    padding: 80px;
+    border: 2px solid var(--borderColor1);
+    cursor: move;
+    text-align: center;
+    margin: 25px;
+    position: relative;
+    /* Added for absolute positioning of images */
+    overflow: hidden;
+    /* Prevent images from overflowing */
+    border-radius: 8px;
+    /* Optional rounded corners */
+}
+
+.packageChoice img {
+    width: 100%;
+    /* Make image width responsive to the container */
+    height: 100%;
+    /* Maintain aspect ratio */
+    position: absolute;
+    /* Position image absolutely within the figure */
+    top: 50%;
+    /* Align center vertically */
+    left: 50%;
+    /* Align center horizontally */
+    transform: translate(-50%, -50%);
+    /* Center the image perfectly */
+    display: block;
+    /* Ensures there is no gap under the image */
+    cursor: grab;
+}
+
+.packageChoice figcaption {
+    font-size: 17px;
+    /* Smaller font size for captions */
+    position: absolute;
+    bottom: 0;
+    /* Aligns the caption to the bottom of the figure */
+    left: 0;
+    width: 100%;
+    /* Ensure the caption spans the width of the figure */
+    background: rgba(0, 0, 0, 0.5);
+    /* Semi-transparent background */
+    color: var(--textColor2);
+    /* Text color */
+    padding: 5px;
+    /* Padding inside the caption */
+    box-sizing: border-box;
+    /* Include padding in the width */
+    cursor: grab;
+}
+
+#dropZone {
+    width: 90%;
+    line-height: 35px;
+    margin: 25px auto;
+    /* Top and bottom margin, auto horizontal margins for centering */
+    padding: 10px;
+    /* Adds some space inside the box */
+    border: 2px solid var(--borderColor1);
+    /* Border for the drop zone */
+    border-radius: 5px;
+    /* Curved corners */
+    background-color: var(--dropzoneColor1);
+    /* Background color */
+    text-align: center;
+    /* Center the text */
+    transition: background-color 0.3s;
+    /* Smooth transition for background color */
+    font-size: 17px;
+    /* Add font-size to the transition */
+}
+
+#dropZone:hover {
+    background-color: var(--dropzoneColor2);
+    /* Change background color on hover */
+    cursor: default;
+    /* Change cursor to indicate it's clickable */
+    font-size: 18px;
+    /* Increase font size on hover */
+}
+
+/* Yurts Packages Table Styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 40px;
+    margin-bottom: 30px;
+}
+
+table th,
+table td {
+    border: 2px solid var(--tableColor1);
+    padding: 8px;
+    text-align: left;
+    color: var(--tableColor2);
+    font-size: 17px;
+    text-align: center;
+}
+
+table th {
+    background-color: var(--tableColor3);
+    font-weight: bold;
+    font-size: 18px;
+    color: var(--tableColor2);
+}
+
+/* Selector to style alternate rows of tables */
+table tr:nth-child(even) {
+    background-color: var(--tableColor3);
+}
+
+table tr:hover {
+    background-color: var(--tableColor4);
+}
+
+/* Selector to style package names in the table */
+table tr td:first-child {
+    font-size: 17px;
+}
+
+table .price {
+    color: var(--tableColor5);
+}
+
+
+/* ACTIVITIES PAGE STYLES */
+#h3Hiking,
+#h3Kayaking,
+#h3BirdWatching,
+.hikingText,
+.kayakingText,
+.birdWatchingText {
+    text-align: center;
+}
+
+#h3Kayaking,
+#h3BirdWatching {
+    margin-top: 60px;
+}
+
+.activity-img {
+    width: 100%;
+    max-width: 600px;
+    /* Adjust based on your preference */
+    height: auto;
+    display: block;
+    margin: 10px auto;
+    /* Centers the image */
+    border: 2px solid var(--borderColor1);
+    border-radius: 8px;
+}
+
+/* Local Trails Styles*/
+#localTrails {
+    text-align: center;
+    /* Center text */
+    margin-top: 60px;
+    margin-bottom: 30px;
+}
+
+/* Button Styles */
+#localTrails button {
+    background-color: var(--buttonBackgroundColor);
+    /* Green background */
+    color: var(--textColor2);
+    /* White text */
+    padding: 15px 35px;
+    /* Top and Bottom Padding, Left and Right Padding */
+    text-decoration: none;
+    /* Remove underline from links */
+    display: inline-block;
+    /* Allows setting dimensions */
+    font-size: 16px;
+    /* Text size */
+    cursor: pointer;
+    /* Cursor changes to pointer to indicate it's clickable */
+    border: none;
+    /* Remove border */
+    border-radius: 5px;
+    /* Rounded corners */
+    box-shadow: 0 4px var(--borderColor4);
+    /* Shadow effect for depth */
+    transition: all 0.3s ease;
+    /* Smooth transition for hover effects */
+    margin-left: auto;
+    margin-right: auto;
+    /* Margins for center alignment */
+}
+
+#localTrails button:hover {
+    background-color: var(--buttonHoverColor);
+    /* Darker shade of green on hover */
+    box-shadow: 0 8px var(--borderColor4);
+    /* Shadow effect for depth */
+    transform: translateY(-2px);
+    /* Button moves up slightly */
+}
+
+#localTrails button:active {
+    background-color: var(--buttonActiceColor);
+    /* Even darker green when the button is clicked */
+    box-shadow: 0 5px var(--borderColor3);
+    /* Push effect on click */
+    transform: translateY(4px);
+    /* Moves the button down when clicked */
+}
+
+/* Google Map Display Style*/
+#googleMap {
+    display: none;
+    width: 920px;
+    /* Default width */
+    height: 600px;
+    /* Default height */
+    border: 0;
+    transition: width 0.5s ease, height 0.5s ease;
+    /* Smooth transition for resizing */
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 30px;
+    border-radius: 5px;
+}
+
+
+/* RESERVATIONS FORM STYLES */
+form {
+    background-color: var(--formBackground-color);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    font-size: 17px;
+    margin-bottom: 30px;
+}
+
+form label {
+    display: block;
+    margin-top: 6px;
+}
+
+form input[type="text"],
+form input[type="email"],
+form input[type="tel"],
+form input[type="date"],
+form input[type="number"],
+form textarea {
+    width: 100%;
+    padding: 9px;
+    margin-top: 5px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+    /* Added to include padding in the width */
+}
+
+form input[type="submit"] {
+    font-size: 17px;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+form input[type="submit"]:hover {
+    background-color: var(--navbarColor);
+    color: var(--textColor2);
+    font-weight: bold;
+}
+
+
+/* FOOTER STYLES */
+footer {
+    width: 100%;
+    min-height: auto;
+    text-align: center;
+    font-size: 16px;
+    padding: 15px 0;
+}
+
+footer a {
+    color: var(--linksColor);
+    /* Color for links */
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+    text-decoration-color: var(--textColor2);
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: top;
+    padding: 0 0%;
+}
+
+.footer-section h4 {
+    margin-top: 0;
+}
+
+.footer-section ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.footer-bottom {
+    text-align: center;
+    border-top: 1px solid var(--borderColor2);
+    margin-top: 15px;
+    padding-top: 10px;
+    font-size: 15px;
+}
+
+/* FontAwesome Icons Style */
+i {
+    margin: 15px;
+    margin-top: 10px;
+    color: var(--textColor2);
+}
+
+i:hover {
+    color: var(--linksColor);
+}
+
+.fa-solid {
+    margin: 5px;
+}

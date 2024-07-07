@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="description" content="Reservations page for Pacific Trails Resort. Set a reservation at a luxurious resort in California.">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pacific Trails Resort :: Reservations</title>
+    <link rel="stylesheet" href="CSS/main.css">
+    <link rel="stylesheet" href="CSS/responsive-design.css">
+    <script src="pacific.js"></script>
+    <script src="https://kit.fontawesome.com/878ee0d378.js" crossorigin="anonymous"></script>
+    <!--if lt IE 9-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
+</head>
+
+<body>
+    <header>
+        <h1 class="headerText">Pacific Trails Resort</h1>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="yurts.html">Yurts</a></li>
+                <li><a href="activities.html">Activities</a></li>
+                <li><a href="reservations.html">Reservations</a></li>
+            </ul>
+            <button class="hamburger">
+                <span class="bar"></span>
+            </button>
+        </nav>
+    </header>
+    <nav class="mobile-nav">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="yurts.html">Yurts</a></li>
+            <li><a href="activities.html">Activities</a></li>
+            <li><a href="reservations.html">Reservations</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <h2>Reservations at Pacific Trails</h2>
+
+        <section>
+            <h3 id="h3Reserv">Contact Us</h3>
+            <p class="pReserv">Required information is marked with an asterisk (*).</p>
+
+            <form method="post" action="http://webdevbasics.net/scripts/pacific.php">
+                <label for="FName">* First Name:</label>
+                <input type="text" name="FName" id="FName">
+
+                <label for="LName">* Last Name:</label>
+                <input type="text" name="LName" id="LName">
+
+                <label for="Email">* E-mail:</label>
+                <input type="email" name="Email" id="Email" required="required">
+
+                <label for="Phone">* Phone:</label>
+                <input type="tel" name="Phone" id="Phone" required="required">
+
+                <label for="Date">Arrival Date:</label>
+                <input type="date" name="Date" id="Date">
+
+                <label for="Nights">Nights:</label>
+                <input type="number" name="Nights" id="Nights" min="1" max="30">
+
+                <label for="Comments">Comments:</label>
+                <textarea name="Comments" id="Comments" rows="7" cols="20"></textarea>
+
+                <input type="submit" id="mySubmit" value="Submit">
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <aside class="footer-container">
+            <section class="footer-section">
+                <h4>Contact Us</h4>
+                <p>Pacific Trails Resort<br>
+                    12010 Pacific Trails Road<br>
+                    Zephyr, CA 95555<br>
+                    <a href="tel:888-555-5555"><i class="fa-solid fa-phone-volume"></i>888-555-5555</a>
+                </p>
+            </section>
+
+            <section class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="yurts.html">Yurts</a></li>
+                    <li><a href="activities.html">Activities</a></li>
+                    <li><a href="reservations.html">Reservations</a></li>
+                </ul>
+            </section>
+
+            <section class="footer-section">
+                <h4>Follow Us</h4>
+                <p>Stay connected with us:</p>
+                <a href="https://facebook.com"><i class="fa-brands fa-facebook fa-2x"></i></a>
+                <a href="https://instagram.com"><i class="fa-brands fa-square-instagram fa-2x"></i></a>
+                <a href="https://twitter.com"><i class="fa-brands fa-square-x-twitter fa-2x"></i></a>
+            </section>
+        </aside>
+
+        <aside class="footer-bottom">
+            <p>&copy; 2023 Pacific Trails Resort</p>
+            <a href="mailto:yourfirstname@yourlastname.com">guy@charles.com</a>
+        </aside>
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="CSS/common.css"></script>
+</body></html>
