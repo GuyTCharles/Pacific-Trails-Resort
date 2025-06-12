@@ -1,8 +1,11 @@
 // Function for hamburger menu effects
+// Also handles package click selection instead of drag and drop
+
 document.addEventListener("DOMContentLoaded", () => {
     handleScrollEffect();
     handleHamburgerToggle();
     handleNavLinkClicks();
+    handlePackageClick();
 });
 
 function handleScrollEffect() {
@@ -19,13 +22,11 @@ function handleScrollEffect() {
 function handleHamburgerToggle() {
     const menuBtn = document.querySelector('.hamburger');
     const mobileMenu = document.querySelector('.mobile-nav');
-    const body = document.body;  // Reference to the body element
+    const body = document.body;
 
     menuBtn.addEventListener('click', () => {
         menuBtn.classList.toggle('is-active');
         mobileMenu.classList.toggle('is-active');
-
-        // Toggle overflow on the body to prevent/allow scrolling
         body.style.overflow = mobileMenu.classList.contains('is-active') ? 'hidden' : '';
     });
 }
@@ -38,37 +39,66 @@ function handleNavLinkClicks() {
         link.addEventListener('click', () => {
             document.querySelector('.hamburger').classList.remove('is-active');
             document.querySelector('.mobile-nav').classList.remove('is-active');
-            body.style.overflow = ''; // Re-enable scrolling when mobile nav is closed
+            body.style.overflow = '';
         });
     });
 }
 
-// Function to handle the retrieval of user's geolocation and display nearest trails
-async function getLocalTrails(position) {
-    // Extracting latitude and longitude from the position object.
+function handlePackageClick() {
+    const figures = document.querySelectorAll('.packageChoice');
+    const tableRows = document.querySelectorAll("table tbody tr");
+
+    figures.forEach(figure => {
+        figure.addEventListener('click', () => {
+            const packageName = figure.querySelector('figcaption').textContent.trim();
+
+            tableRows.forEach(row => {
+                row.classList.remove('selected-package');
+                const firstCell = row.querySelector('td');
+                if (firstCell && firstCell.textContent.trim() === packageName) {
+                    row.classList.add('selected-package');
+                }
+            });
+        });
+    });
+}
+
+// --- Scroll to Package Row on Click ---
+function scrollToPackage(rowId) {
+    const targetRow = document.getElementById(rowId);
+    if (targetRow) {
+        targetRow.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+        });
+
+        // Optional: Highlight briefly
+        targetRow.classList.add('selected-package');
+        setTimeout(() => {
+            targetRow.classList.remove('selected-package');
+        }, 2000);
+    }
+}
+
+// Geolocation and Trail Button Functions
+function getLocalTrails(position) {
     const {
         latitude,
         longitude
     } = position.coords;
-
-    // Placeholder for a server call to fetch trails based on the user's location.
     console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
-
-    // Since geolocation succeeded, show the button to allow user to view the map.
     showButton();
 }
 
-// Function to get the user's current location.
-async function getUserLocation() {
+function getUserLocation() {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(getLocalTrails, showError);
     } else {
         document.getElementById('localTrails').textContent = "Geolocation is not supported by this browser.";
-        showButton(); // Even if geolocation is not supported, show the button.
+        showButton();
     }
 }
 
-// Error handling function.
 function showError(error) {
     let message = '';
     switch (error.code) {
@@ -85,12 +115,10 @@ function showError(error) {
             message = "<strong><em>An unknown error occurred.</em></strong>";
             break;
     }
-
     document.getElementById('localTrails').innerHTML = message;
-    showButton(); // Show the button to allow users to view the map even if there was an error.
+    showButton();
 }
 
-// Function to display the map when users click the button and control the smooth scrolling effect.
 function showButton() {
     const buttonContainer = document.getElementById('localTrails');
     const existingButton = document.getElementById('viewTrailsButton');
@@ -115,7 +143,6 @@ function showButton() {
     }
 }
 
-// Function to show the Google Map iframe.
 function showMap() {
     const googleMapIframe = document.getElementById('googleMap');
     if (googleMapIframe) {
@@ -123,56 +150,9 @@ function showMap() {
     }
 }
 
-// Function to initially hide the Google Map iframe.
 function hideMap() {
     const googleMapIframe = document.getElementById('googleMap');
     googleMapIframe.style.display = 'none';
 }
 
-// Call getUserLocation on page load or based on a specific event
 getUserLocation();
-
-
-// Function to allow dropping items in the drop zone
-function allowDrop(event) {
-    event.preventDefault(); // Prevents the default behavior of the element
-}
-
-// Function to handle the drag event
-function drag(event) {
-    const dataTransfer = event.dataTransfer;
-    const target = event.target;
-    const tagName = target.tagName.toLowerCase();
-
-    if (tagName === 'img' || tagName === 'figcaption') {
-        dataTransfer.setData("text", target.parentElement.id);
-    } else {
-        dataTransfer.setData("text", target.id);
-    }
-}
-
-// Function to handle the drop event
-function drop(event) {
-    event.preventDefault();
-
-    const data = event.dataTransfer.getData("text");
-    const draggableElement = document.getElementById(data);
-
-    const dropZone = document.getElementById('dropZone');
-    const packageName = draggableElement.querySelector('figcaption').textContent.trim();
-
-    dropZone.textContent = `${packageName} - Package Selected`;
-    dropZone.style.backgroundColor = '#7FFFD4';
-
-    const rows = document.querySelectorAll("table tbody tr");
-    rows.forEach(row => {
-        row.classList.remove("selected-package");
-
-        const firstCell = row.querySelector("td");
-        const rowPackage = firstCell.textContent.trim();
-
-        if (rowPackage === packageName) {
-            row.classList.add("selected-package");
-        }
-    });
-}
