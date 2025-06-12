@@ -310,6 +310,12 @@ table th {
     color: var(--tableColor2);
 }
 
+/* Highlighted Package Row */
+tr.selected-package {
+    background-color: var(--tableColor4); /* Matches table hover color */
+    transition: background-color 0.3s ease;
+}
+
 /* Selector to style alternate rows of tables */
 table tr:nth-child(even) {
     background-color: var(--tableColor3);
