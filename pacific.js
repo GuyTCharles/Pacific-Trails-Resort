@@ -153,14 +153,26 @@ function drag(event) {
 
 // Function to handle the drop event
 function drop(event) {
-    event.preventDefault(); // Prevents the default behavior of the element
+    event.preventDefault();
 
     const data = event.dataTransfer.getData("text");
     const draggableElement = document.getElementById(data);
 
     const dropZone = document.getElementById('dropZone');
-    const packageName = draggableElement.querySelector('figcaption').innerText; // Get the package name from the figcaption
-    dropZone.textContent = `${packageName} - Package Selected`;
+    const packageName = draggableElement.querySelector('figcaption').textContent.trim();
 
+    dropZone.textContent = `${packageName} - Package Selected`;
     dropZone.style.backgroundColor = '#7FFFD4';
+
+    const rows = document.querySelectorAll("table tbody tr");
+    rows.forEach(row => {
+        row.classList.remove("selected-package");
+
+        const firstCell = row.querySelector("td");
+        const rowPackage = firstCell.textContent.trim();
+
+        if (rowPackage === packageName) {
+            row.classList.add("selected-package");
+        }
+    });
 }
