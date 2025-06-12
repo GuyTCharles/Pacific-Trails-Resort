@@ -59,20 +59,21 @@
 
             <h4 id="h4Yurts">Select your preferred package:</h4>
             <aside id="packageChoices">
-                <figure id="weekendEscape" class="packageChoice" draggable="true" ondragstart="drag(event)">
+                <figure id="weekendEscape" class="packageChoice" onclick="scrollToPackage('weekendEscapeRow')">
                     <img src="images/yurt-image1.jpg" alt="Weekend Escape Yurt">
                     <figcaption>Weekend Escape</figcaption>
                 </figure>
-                <figure id="zenRetreat" class="packageChoice" draggable="true" ondragstart="drag(event)">
+
+                <figure id="zenRetreat" class="packageChoice" onclick="scrollToPackage('zenRetreatRow')">
                     <img src="images/yurt-image2.jpg" alt="Zen Retreat Yurt">
                     <figcaption>Zen Retreat</figcaption>
                 </figure>
-                <figure id="kayakAway" class="packageChoice" draggable="true" ondragstart="drag(event)">
+
+                <figure id="kayakAway" class="packageChoice" onclick="scrollToPackage('kayakAwayRow')">
                     <img src="images/yurt-image3.jpg" alt="Kayak Away Yurt">
                     <figcaption>Kayak Away</figcaption>
                 </figure>
             </aside>
-            <aside id="dropZone" ondrop="drop(event)" ondragover="allowDrop(event)">Drag your package here</aside>
 
             <table>
                 <thead>
@@ -84,19 +85,21 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
+                    <tr id="weekendEscapeRow">
                         <td>Weekend Escape</td>
                         <td>Two breakfasts, a trail map, a picnic snack</td>
                         <td>2 nights</td>
                         <td class="price">$450</td>
                     </tr>
-                    <tr>
+
+                    <tr id="zenRetreatRow">
                         <td>Zen Retreat</td>
                         <td>Four breakfasts, a trail map, a pass for daily yoga</td>
                         <td>4 nights</td>
                         <td class="price">$600</td>
                     </tr>
-                    <tr>
+
+                    <tr id="kayakAwayRow">
                         <td>Kayak Away</td>
                         <td>Two breakfasts, two hours of kayak rental daily, a trail map</td>
                         <td>2 nights</td>
