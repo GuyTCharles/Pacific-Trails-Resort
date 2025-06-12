@@ -192,11 +192,7 @@ video {
     display: flex;
     gap: 10px;
     justify-content: center;
-    /* Center the items in the container */
     flex-wrap: wrap;
-    /* Wrap items to new line if necessary */
-    position: relative;
-    /* Ensure the figure is the positioning context */
 }
 
 .packageChoice {
@@ -206,7 +202,7 @@ video {
     /* Allow height to adjust to the content */
     padding: 80px;
     border: 2px solid var(--borderColor1);
-    cursor: move;
+    cursor: pointer;
     text-align: center;
     margin: 25px;
     position: relative;
@@ -215,6 +211,14 @@ video {
     /* Prevent images from overflowing */
     border-radius: 8px;
     /* Optional rounded corners */
+}
+
+.packageChoice {
+    transition: transform 0.3s ease;
+}
+
+.packageChoice:hover {
+    transform: scale(1.06);
 }
 
 .packageChoice img {
@@ -232,7 +236,7 @@ video {
     /* Center the image perfectly */
     display: block;
     /* Ensures there is no gap under the image */
-    cursor: grab;
+    cursor: pointer;
 }
 
 .packageChoice figcaption {
@@ -252,37 +256,7 @@ video {
     /* Padding inside the caption */
     box-sizing: border-box;
     /* Include padding in the width */
-    cursor: grab;
-}
-
-#dropZone {
-    width: 90%;
-    line-height: 35px;
-    margin: 25px auto;
-    /* Top and bottom margin, auto horizontal margins for centering */
-    padding: 10px;
-    /* Adds some space inside the box */
-    border: 2px solid var(--borderColor1);
-    /* Border for the drop zone */
-    border-radius: 5px;
-    /* Curved corners */
-    background-color: var(--dropzoneColor1);
-    /* Background color */
-    text-align: center;
-    /* Center the text */
-    transition: background-color 0.3s;
-    /* Smooth transition for background color */
-    font-size: 17px;
-    /* Add font-size to the transition */
-}
-
-#dropZone:hover {
-    background-color: var(--dropzoneColor2);
-    /* Change background color on hover */
-    cursor: default;
-    /* Change cursor to indicate it's clickable */
-    font-size: 18px;
-    /* Increase font size on hover */
+    cursor: pointer;
 }
 
 /* Yurts Packages Table Styles */
@@ -297,7 +271,6 @@ table th,
 table td {
     border: 2px solid var(--tableColor1);
     padding: 8px;
-    text-align: left;
     color: var(--tableColor2);
     font-size: 17px;
     text-align: center;
@@ -311,18 +284,14 @@ table th {
 }
 
 /* Highlighted Package Row */
-tr.selected-package {
-    background-color: var(--tableColor4); /* Matches table hover color */
+table tr.selected-package {
+    background-color: var(--tableColor4) !important;
     transition: background-color 0.3s ease;
 }
 
 /* Selector to style alternate rows of tables */
 table tr:nth-child(even) {
     background-color: var(--tableColor3);
-}
-
-table tr:hover {
-    background-color: var(--tableColor4);
 }
 
 /* Selector to style package names in the table */
