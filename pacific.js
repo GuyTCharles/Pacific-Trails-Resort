@@ -63,7 +63,6 @@ function handlePackageClick() {
     });
 }
 
-// --- Scroll to Package Row on Click ---
 function scrollToPackage(rowId) {
     const targetRow = document.getElementById(rowId);
     if (targetRow) {
@@ -72,11 +71,11 @@ function scrollToPackage(rowId) {
             block: 'start'
         });
 
-        // Optional: Highlight briefly
+        // Keep the selection highlight permanently
+        document.querySelectorAll('table tbody tr').forEach(row => {
+            row.classList.remove('selected-package');
+        });
         targetRow.classList.add('selected-package');
-        setTimeout(() => {
-            targetRow.classList.remove('selected-package');
-        }, 2000);
     }
 }
 
