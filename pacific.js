@@ -1,6 +1,5 @@
 // Function for hamburger menu effects
 // Also handles package click selection instead of drag and drop
-
 document.addEventListener("DOMContentLoaded", () => {
     handleScrollEffect();
     handleHamburgerToggle();
