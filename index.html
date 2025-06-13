@@ -2,16 +2,16 @@
 <html lang="en">
 
 <head>
-    <meta name="description" content="Pacific Trails Resort, a special lodging company on the California North Coast. Rent Yurts, go hiking, or relax in the heated pool">
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Pacific Trails Resort, a special lodging company on the California North Coast. Rent Yurts, go hiking, or relax in the heated pool" />
     <title>Pacific Trails Resort</title>
-    <link rel="stylesheet" href="CSS/main.css">
-    <link rel="stylesheet" href="CSS/responsive-design.css">
-    <script src="pacific.js"></script>
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="CSS/main.css" />
+    <link rel="stylesheet" href="CSS/responsive-design.css" />
+    <link rel="stylesheet" href="CSS/common.css" />
+    <!-- Font Awesome -->
     <script src="https://kit.fontawesome.com/878ee0d378.js" crossorigin="anonymous"></script>
-    <!--if lt IE 9-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
 </head>
 
 <body>
@@ -24,11 +24,10 @@
                 <li><a href="activities.html">Activities</a></li>
                 <li><a href="reservations.html">Reservations</a></li>
             </ul>
-            <button class="hamburger">
-                <span class="bar"></span>
-            </button>
+            <button class="hamburger"><span class="bar"></span></button>
         </nav>
     </header>
+
     <nav class="mobile-nav">
         <ul>
             <li><a href="index.html">Home</a></li>
@@ -39,40 +38,93 @@
     </nav>
 
     <main>
-        <section>
-            <h2>Enjoy Nature in Luxury</h2>
-            <img src="images/nature-path-trail.jpg" alt="Coast Image" class="homePage-img">
+        <!-- HERO SECTION -->
+        <section class="hero-section">
+            <div class="hero-overlay">
+                <h2>Escape to Nature in Luxury</h2>
+                <p>Unplug. Relax. Reconnect.</p>
+            </div>
+        </section>
 
-            <aside id="text-videoContainer">
-                <aside class="indexText">
-                    <p class="indexP"><span class="resortName">Pacific Trails Resort</span> offers a special lodging experience on the California North Coast. Relax in serenity with panoramic views of the Pacific Ocean.</p>
-                    <ul>
-                        <li>Private yurts with decks overlooking the ocean</li>
-                        <li>Activities lodge with fireplace and gift shop</li>
-                        <li>Nightly fine dining at the Overlook Cafe</li>
-                        <li>Heated outdoor pool and whirlpool</li>
-                        <li>Guided hiking tours of the redwoods</li>
-                    </ul>
-                </aside>
+        <!-- OVERVIEW SECTION -->
+        <section class="overview-section">
+            <h2>Discover What Awaits You</h2>
 
-                <aside class="videoDisplay">
-                    <video controls="controls" poster="images/pacific.jpg">
+            <div class="overview-grid">
+                <!-- Left Column -->
+                <div class="left-column">
+                    <p class="indexP">
+                        <span class="resortName">Pacific Trails Resort</span> offers a special lodging experience on the California North Coast.
+                        Relax in serenity with panoramic views of the Pacific Ocean.
+                    </p>
+
+                    <!-- Feature Cards -->
+                    <section class="features-section">
+                        <div class="feature-card">
+                            <i class="fa-solid fa-water"></i>
+                            <p>Ocean-view Yurts</p>
+                            <small>Private decks with panoramic Pacific views.</small>
+                        </div>
+
+                        <div class="feature-card">
+                            <i class="fa-solid fa-mug-hot"></i>
+                            <p>Activities Lodge</p>
+                            <small>Relax by the fireplace and explore the gift shop.</small>
+                        </div>
+
+                        <div class="feature-card">
+                            <i class="fa-solid fa-utensils"></i>
+                            <p>Fine Dining</p>
+                            <small>Dine nightly at our elegant Overlook Café.</small>
+                        </div>
+
+                        <div class="feature-card">
+                            <i class="fa-solid fa-hot-tub-person"></i>
+                            <p>Heated Pool & Spa</p>
+                            <small>Unwind in the warmth of our outdoor whirlpool.</small>
+                        </div>
+
+                        <div class="feature-card">
+                            <i class="fa-solid fa-person-hiking"></i>
+                            <p>Guided Hiking</p>
+                            <small>Join expert-led tours through the redwoods.</small>
+                        </div>
+
+                        <div class="feature-card">
+                            <i class="fa-solid fa-fire"></i>
+                            <p>Fireplace Evenings</p>
+                            <small>Starlit nights by crackling fire pits.</small>
+                        </div>
+                    </section>
+                </div>
+            </div>
+            
+            <div class="video-modal-container">
+                <button id="openVideoModal" class="watch-video-button">Watch Resort Video</button>
+            </div>
+
+            <div id="videoModal" class="modal">
+                <div class="modal-content">
+                    <span class="close-button" id="closeVideoModal">&times;</span>
+                    <video controls class="modal-video">
                         <source src="videos/pacific.mp4" type="video/mp4">
                         <source src="videos/pacific.ogv" type="video/ogv">
-                        <embed type="application/x-shockwave-flash" src="videos/pacific.swf" quality="high" width="320" height="240">
+                        <p>Your browser does not support the video tag.
+                            <a href="videos/pacific.mp4">Download the video</a>
+                        </p>
                     </video>
-                </aside>
-            </aside>
+                </div>
+            </div>
         </section>
     </main>
-
     <footer>
-        <aside class="footer-container">
+        <div class="footer-container">
             <section class="footer-section">
                 <h4>Contact Us</h4>
-                <p>Pacific Trails Resort<br>
-                    12010 Pacific Trails Road<br>
-                    Zephyr, CA 95555<br>
+                <p>
+                    Pacific Trails Resort<br />
+                    12010 Pacific Trails Road<br />
+                    Zephyr, CA 95555<br />
                     <a href="tel:888-555-5555"><i class="fa-solid fa-phone-volume"></i>888-555-5555</a>
                 </p>
             </section>
@@ -94,15 +146,43 @@
                 <a href="https://instagram.com"><i class="fa-brands fa-square-instagram fa-2x"></i></a>
                 <a href="https://twitter.com"><i class="fa-brands fa-square-x-twitter fa-2x"></i></a>
             </section>
-        </aside>
+        </div>
 
-        <aside class="footer-bottom">
+        <div class="footer-bottom">
             <p>&copy; 2023 Pacific Trails Resort</p>
-            <a href="mailto:yourfirstname@yourlastname.com">guy@charles.com</a>
-        </aside>
+            <a href="mailto:mail@domain.com"></a>
+        </div>
     </footer>
+
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="CSS/common.css"></script>
+    <script src="pacific.js"></script>
+
+    <script>
+        const modal = document.getElementById("videoModal");
+        const openBtn = document.getElementById("openVideoModal");
+        const closeBtn = document.getElementById("closeVideoModal");
+        const video = modal.querySelector("video");
+
+        openBtn.onclick = function() {
+            modal.style.display = "block";
+            video.currentTime = 0;
+            video.play(); // Play only on click
+        };
+
+        closeBtn.onclick = function() {
+            modal.style.display = "none";
+            video.pause();
+            video.currentTime = 0; // Optional: reset to beginning
+        };
+
+        window.onclick = function(event) {
+            if (event.target === modal) {
+                modal.style.display = "none";
+                video.pause();
+                video.currentTime = 0;
+            }
+        };
+    </script>
 </body>
 
 </html>
