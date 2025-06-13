@@ -46,7 +46,7 @@ html {
     /* Line height for readability */
     color: var(--textColor1);
     /* Default text color */
-    background-image: URL(../images/background.jpg);
+    background: URL(../images/background.jpg);
     display: flex;
     flex-direction: column;
     scroll-behavior: smooth;
