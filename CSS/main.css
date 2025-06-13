@@ -124,7 +124,7 @@ h3 {
 /* Hero Style */
 .hero-section {
     position: relative;
-    background: url('/images/nature-path-trail.jpg') no-repeat center center/cover;
+    background: url(/images/nature-path-trail.jpg) no-repeat center center/cover;
     height: 400px;
     display: flex;
     align-items: center;
