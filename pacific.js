@@ -1,11 +1,75 @@
-// Function for hamburger menu effects
-// Also handles package click selection instead of drag and drop
-document.addEventListener("DOMContentLoaded", () => {
+// Modernized Hamburger Menu & Nav Toggle (with accessibility)
+document.addEventListener('DOMContentLoaded', function() {
+    // --- Hamburger/menu logic as before ---
     handleScrollEffect();
-    handleHamburgerToggle();
-    handleNavLinkClicks();
     handlePackageClick();
+
+    const hamburger = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobileNav');
+    const navOverlay = document.getElementById('navOverlay');
+    if (hamburger && mobileNav && navOverlay) {
+        hamburger.addEventListener('click', function() {
+            hamburger.classList.toggle('active');
+            mobileNav.classList.toggle('active');
+            navOverlay.classList.toggle('active');
+            hamburger.setAttribute('aria-expanded', hamburger.classList.contains('active'));
+            document.body.style.overflow = hamburger.classList.contains('active') ? 'hidden' : '';
+        });
+
+        navOverlay.addEventListener('click', function() {
+            hamburger.classList.remove('active');
+            mobileNav.classList.remove('active');
+            navOverlay.classList.remove('active');
+            hamburger.setAttribute('aria-expanded', false);
+            document.body.style.overflow = '';
+        });
+
+        // Close menu on mobile nav link click
+        document.querySelectorAll('.mobile-nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                mobileNav.classList.remove('active');
+                navOverlay.classList.remove('active');
+                hamburger.setAttribute('aria-expanded', false);
+                document.body.style.overflow = '';
+            });
+        });
+
+        // Close menu when clicking outside (optional: can remove if overlay covers all)
+        window.addEventListener('click', function(e) {
+            if (
+                mobileNav.classList.contains('active') &&
+                !mobileNav.contains(e.target) &&
+                !hamburger.contains(e.target) &&
+                !navOverlay.contains(e.target)
+            ) {
+                hamburger.classList.remove('active');
+                mobileNav.classList.remove('active');
+                navOverlay.classList.remove('active');
+                hamburger.setAttribute('aria-expanded', false);
+                document.body.style.overflow = '';
+            }
+        });
+    }
+
+    // --- ACTIVE LINK LOGIC (BOTH MENUS) ---
+    let path = window.location.pathname.split("/").pop() || "index.html";
+    path = path.toLowerCase();
+
+    // For each nav link in both navbars
+    document.querySelectorAll('.nav-links a, .mobile-nav a').forEach(link => {
+        let href = link.getAttribute('href').toLowerCase();
+        if (
+            href === path ||
+            // Special case for homepage links
+            ((path === 'index.html' || path === '') && (href === 'index.html' || href === './' || href === ''))
+        ) {
+            link.classList.add('active');
+        }
+    });
 });
+
+// --- OTHER FUNCTIONS ---
 
 function handleScrollEffect() {
     window.addEventListener('scroll', () => {
@@ -15,31 +79,6 @@ function handleScrollEffect() {
         } else {
             header.classList.remove('is-scrolling');
         }
-    });
-}
-
-function handleHamburgerToggle() {
-    const menuBtn = document.querySelector('.hamburger');
-    const mobileMenu = document.querySelector('.mobile-nav');
-    const body = document.body;
-
-    menuBtn.addEventListener('click', () => {
-        menuBtn.classList.toggle('is-active');
-        mobileMenu.classList.toggle('is-active');
-        body.style.overflow = mobileMenu.classList.contains('is-active') ? 'hidden' : '';
-    });
-}
-
-function handleNavLinkClicks() {
-    const navLinks = document.querySelectorAll('.mobile-nav a');
-    const body = document.body;
-
-    navLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            document.querySelector('.hamburger').classList.remove('is-active');
-            document.querySelector('.mobile-nav').classList.remove('is-active');
-            body.style.overflow = '';
-        });
     });
 }
 
@@ -90,31 +129,9 @@ function getLocalTrails(position) {
 
 function getUserLocation() {
     if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(getLocalTrails, showError);
-    } else {
-        document.getElementById('localTrails').textContent = "Geolocation is not supported by this browser.";
-        showButton();
+        navigator.geolocation.getCurrentPosition(getLocalTrails);
     }
-}
-
-function showError(error) {
-    let message = '';
-    switch (error.code) {
-        case error.PERMISSION_DENIED:
-            message = "<strong><em>You have not authorized geolocation tracking, but you can still explore our nearest trails!</em></strong>";
-            break;
-        case error.POSITION_UNAVAILABLE:
-            message = "<strong><em>Location information is unavailable.</em></strong>";
-            break;
-        case error.TIMEOUT:
-            message = "<strong><em>The request to get user location timed out.</em></strong>";
-            break;
-        case error.UNKNOWN_ERROR:
-            message = "<strong><em>An unknown error occurred.</em></strong>";
-            break;
-    }
-    document.getElementById('localTrails').innerHTML = message;
-    showButton();
+    // If not supported or denied, nothing happens.
 }
 
 function showButton() {
@@ -153,4 +170,5 @@ function hideMap() {
     googleMapIframe.style.display = 'none';
 }
 
+// Start geolocation on page load
 getUserLocation();
