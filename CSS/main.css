@@ -850,7 +850,7 @@ table .price {
 .activities-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 32px;
+    gap: 50px;
     margin-bottom: 36px;
 }
 
@@ -874,12 +874,14 @@ table .price {
 .activity-img {
     width: 100%;
     max-width: 250px;
-    height: 250px;
+    aspect-ratio: 1 / 1;   /* Always a square, scales nicely */
+    height: auto;
     object-fit: cover;
     border-radius: 8px;
     margin-bottom: 18px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
     border: 1px solid var(--borderColor1);
+    display: block;
 }
 
 .activity-card h3 {
@@ -944,18 +946,18 @@ table .price {
     border-radius: 7px;
     box-shadow: 0 3px 12px rgba(32, 48, 74, 0.12);
 }
+
 /* Tablet/iPad: 2 cards in first row, 1 centered below */
 @media (max-width: 1024px) {
     .activities-grid {
         grid-template-columns: repeat(2, 1fr);
         grid-template-rows: auto auto;
-        gap: 36px 32px;
     }
 
     .activities-grid .activity-card:nth-child(3) {
         grid-column: 1 / span 2;
         justify-self: center;
-        max-width: 340px;
+        max-width: 48%;
     }
 }
 
@@ -963,7 +965,7 @@ table .price {
 @media (max-width: 700px) {
     .activities-grid {
         grid-template-columns: 1fr;
-        gap: 24px;
+        gap: 60px;
     }
 
     .activities-grid .activity-card {
