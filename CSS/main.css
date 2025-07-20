@@ -426,7 +426,7 @@ h3 {
     justify-content: center;
     height: 380px;
     /* A balanced value between 340 and 400 */
-    background: url(/project_5/images/nature-path-trail.jpg) no-repeat center center/cover;
+    background: URL(../images/nature-path-trail.jpg) no-repeat center center/cover;
     margin-bottom: 22px;
     border-radius: 10px;
 }
