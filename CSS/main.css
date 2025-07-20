@@ -842,23 +842,9 @@ table .price {
 
 /* ACTIVITIES PAGE STYLES */
 .activities-section {
-    background: var(--backgroundColor);
-    border-radius: 14px;
-    box-shadow: 0 3px 20px rgba(32, 48, 74, 0.06);
-    padding: 35px 22px 44px 22px;
-    margin: 36px 0 24px 0;
-    max-width: 1100px;
+    margin-top: 38px;
     margin-left: auto;
     margin-right: auto;
-}
-
-.activities-section h2 {
-    color: var(--headerFooterColor);
-    font-size: 2rem;
-    font-weight: 700;
-    text-align: center;
-    margin-bottom: 36px;
-    letter-spacing: 0.5px;
 }
 
 .activities-grid {
@@ -916,7 +902,7 @@ table .price {
 }
 
 .local-trails-button {
-    margin: 20px 0 0 0;
+    margin: 25px 0 18px 0;
     padding: 16px 25px;
     font-size: 1.1rem;
     font-weight: 600;
@@ -958,7 +944,6 @@ table .price {
     border-radius: 7px;
     box-shadow: 0 3px 12px rgba(32, 48, 74, 0.12);
 }
-
 /* Tablet/iPad: 2 cards in first row, 1 centered below */
 @media (max-width: 1024px) {
     .activities-grid {
