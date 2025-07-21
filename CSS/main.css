@@ -1235,6 +1235,8 @@ i {
     z-index: 2;
     transition: color 0.14s;
     position: relative;
+    vertical-align: middle;
+    padding-top: 5px !important;
 }
 
 .footer-social.facebook:hover,
@@ -1269,9 +1271,8 @@ i {
 
 @media (max-width: 600px) {
     .footer-social {
-        width: 34px;
-        height: 34px;
-        font-size: 1.1rem;
+        width: 35px !important;
+        height: 35px !important;
     }
 }
 
