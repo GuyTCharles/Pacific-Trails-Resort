@@ -55,7 +55,7 @@
         <section class="activities-section">
             <div class="activities-grid">
                 <div class="activity-card">
-                    <img src="images/hiking.png" alt="Hiking at Pacific Trails" class="activity-img">
+                    <img src="images/hiking.png" alt="Hiking at Pacific Trails" class="activity-img" data-caption="Guided forest hikes with scenic redwood and coastal trail views.">
                     <h3>Hiking</h3>
                     <p class="activity-desc">
                         We offer ten miles of scenic hiking trails along a beautiful state park. Explore on your own or join a guided hike.
@@ -64,7 +64,7 @@
                 </div>
                 
                 <div class="activity-card">
-                    <img src="images/mountain-biking.png" alt="Mountain Biking at Pacific Trails" class="activity-img">
+                    <img src="images/mountain-biking.png" alt="Mountain Biking at Pacific Trails" class="activity-img" data-caption="Ride winding mountain trails designed for all skill levels.">
                     <h3>Mountain Biking</h3>
                     <p class="activity-desc">
                         Explore designated biking trails through scenic forest paths and rolling terrain. Perfect for both beginners and experienced riders.
@@ -73,7 +73,7 @@
                 </div>
                 
                 <div class="activity-card">
-                    <img src="images/bird-watching.png" alt="Bird Watching at Pacific Trails" class="activity-img">
+                    <img src="images/bird-watching.png" alt="Bird Watching at Pacific Trails" class="activity-img" data-caption="Sunrise birdwatching tours led by local nature experts.">
                     <h3>Bird Watching</h3>
                     <p class="activity-desc">
                         While anytime is a good time for bird watching at Pacific Trails Resort, we offer guided birdwatching trips at sunrise several times a week.
@@ -81,7 +81,7 @@
                 </div>
                 
                 <div class="activity-card">
-                    <img src="images/kayaking.png" alt="Kayaking at Pacific Trails" class="activity-img">
+                    <img src="images/kayaking.png" alt="Kayaking at Pacific Trails" class="activity-img" data-caption="Paddle calm coastal waters with panoramic ocean scenery.">
                     <h3>Kayaking</h3>
                     <p class="activity-desc">
                         Ocean kayaks are available for guest use, allowing you to glide across the gentle waves and discover breathtaking coastal views from a unique perspective.
@@ -89,7 +89,7 @@
                 </div>
                 
                 <div class="activity-card">
-                    <img src="images/fishing.png" alt="Fishing at Pacific Trails" class="activity-img">
+                    <img src="images/fishing.png" alt="Fishing at Pacific Trails" class="activity-img" data-caption="Relaxed shoreline fishing with optional guide support.">
                     <h3>Fishing</h3>
                     <p class="activity-desc">
                         Spend a peaceful morning fishing along the river or nearby lake. Equipment rentals and guided fishing experiences can be available for guests.
@@ -97,7 +97,7 @@
                 </div>
                 
                 <div class="activity-card">
-                    <img src="images/campfire.png" alt="Campfire Evenings at Pacific Trails" class="activity-img">
+                    <img src="images/campfire.png" alt="Campfire Evenings at Pacific Trails" class="activity-img" data-caption="Evening campfires with stories, s'mores, and stargazing.">
                     <h3>Campfire Evenings</h3>
                     <p class="activity-desc">
                         Gather around a cozy campfire at sunset. Enjoy storytelling, marshmallow roasting, and relaxing under the stars with family and friends.
@@ -118,6 +118,16 @@
             
         </section>
     </main>
+
+    <div id="activityImageModal" class="activity-image-modal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="activityModalCaption">
+        <div class="activity-image-modal-content">
+            <button type="button" class="activity-image-close" id="closeActivityImageModal" aria-label="Close activity image">&times;</button>
+            <figure class="activity-image-figure">
+                <img id="activityModalImage" class="activity-image-full" src="" alt="">
+                <figcaption id="activityModalCaption" class="activity-image-caption"></figcaption>
+            </figure>
+        </div>
+    </div>
 
     <footer>
         <div class="footer-container">
