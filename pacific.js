@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // --- Hamburger/menu logic as before ---
     handleScrollEffect();
     handlePackageClick();
+    setupActivityImageModal();
     setupReservationDateValidation();
 
     const hamburger = document.getElementById('hamburger');
@@ -104,6 +105,75 @@ function handlePackageClick() {
                 }
             });
         });
+    });
+}
+
+function setupActivityImageModal() {
+    const modal = document.getElementById('activityImageModal');
+    const modalImage = document.getElementById('activityModalImage');
+    const modalCaption = document.getElementById('activityModalCaption');
+    const closeButton = document.getElementById('closeActivityImageModal');
+    const activityImages = document.querySelectorAll('.activity-card .activity-img');
+
+    if (!modal || !modalImage || !modalCaption || !closeButton || activityImages.length === 0) {
+        return;
+    }
+
+    const openModal = (image) => {
+        const activityCard = image.closest('.activity-card');
+        const heading = activityCard ? activityCard.querySelector('h3') : null;
+        const customCaption = image.dataset.caption ? image.dataset.caption.trim() : '';
+        const fallbackCaption = heading ? heading.textContent.trim() : image.alt.trim();
+        const captionText = customCaption || fallbackCaption;
+
+        modalImage.src = image.currentSrc || image.src;
+        modalImage.alt = image.alt || captionText;
+        modalCaption.textContent = captionText;
+
+        modal.classList.add('is-open');
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+        closeButton.focus();
+    };
+
+    const closeModal = () => {
+        if (!modal.classList.contains('is-open')) {
+            return;
+        }
+
+        modal.classList.remove('is-open');
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+        modalImage.removeAttribute('src');
+        modalImage.alt = '';
+        modalCaption.textContent = '';
+    };
+
+    activityImages.forEach((image) => {
+        image.setAttribute('tabindex', '0');
+        image.setAttribute('role', 'button');
+        image.setAttribute('aria-haspopup', 'dialog');
+
+        image.addEventListener('click', () => openModal(image));
+        image.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                openModal(image);
+            }
+        });
+    });
+
+    closeButton.addEventListener('click', closeModal);
+    modal.addEventListener('click', (event) => {
+        if (event.target === modal) {
+            closeModal();
+        }
+    });
+
+    window.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') {
+            closeModal();
+        }
     });
 }
 
