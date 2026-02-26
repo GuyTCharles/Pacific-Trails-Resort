@@ -1,4 +1,4 @@
-// Modernized Hamburger Menu & Nav Toggle (with accessibility)
+// Hamburger Menu & Nav Toggle (with accessibility)
 document.addEventListener('DOMContentLoaded', function() {
     // --- Hamburger/menu logic as before ---
     handleScrollEffect();
