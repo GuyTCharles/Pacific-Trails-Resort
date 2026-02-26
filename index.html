@@ -14,22 +14,30 @@
 </head>
 
 <body>
-    <header>
-        <h1 class="headerText">Pacific Trails Resort</h1>
+    <header class="site-header">
+        <div class="header-inner">
+            <a href="index.html" class="header-brand" aria-label="Pacific Trails Resort home">
+                <img src="images/logo.png" alt="Pacific Trails Resort logo" class="header-logo">
+                <div class="header-brand-copy">
+                    <span class="header-brand-name">Pacific Trails Resort</span>
+                    <span class="header-brand-tagline">California North Coast Nature Retreat</span>
+                </div>
+            </a>
+            <nav class="main-nav" aria-label="Primary navigation">
+                <ul class="nav-links">
+                    <li><a href="index.html"><i class="fa-solid fa-house"></i> Home</a></li>
+                    <li><a href="yurts.html"><i class="fa-solid fa-campground"></i> Yurts</a></li>
+                    <li><a href="activities.html"><i class="fa-solid fa-person-hiking"></i> Activities</a></li>
+                    <li><a href="reservations.html"><i class="fa-solid fa-calendar-check"></i> Reservations</a></li>
+                </ul>
+                <button id="hamburger" class="hamburger" aria-label="Menu" aria-expanded="false">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
+            </nav>
+        </div>
     </header>
-    <nav class="main-nav">
-        <ul class="nav-links">
-            <li><a href="index.html"><i class="fa-solid fa-house"></i> Home</a></li>
-            <li><a href="yurts.html"><i class="fa-solid fa-campground"></i> Yurts</a></li>
-            <li><a href="activities.html"><i class="fa-solid fa-person-hiking"></i> Activities</a></li>
-            <li><a href="reservations.html"><i class="fa-solid fa-calendar-check"></i> Reservations</a></li>
-        </ul>
-        <button id="hamburger" class="hamburger" aria-label="Menu" aria-expanded="false">
-            <span class="bar"></span>
-            <span class="bar"></span>
-            <span class="bar"></span>
-        </button>
-    </nav>
     <nav id="mobileNav" class="mobile-nav">
         <ul class="mobile-links">
             <li><a href="index.html"><i class="fa-solid fa-house"></i> Home</a></li>
@@ -44,8 +52,8 @@
         <!-- HERO SECTION -->
         <section class="hero-section">
             <div class="hero-overlay">
-                <h2>Escape to Nature in Luxury</h2>
-                <p>Unplug. Relax. Reconnect.</p>
+                <h2 class="hero-title">Escape to Nature in Luxury</h2>
+                <p class="hero-subtitle">Unplug. Relax. Reconnect.</p>
             </div>
         </section>
 
@@ -57,7 +65,7 @@
                 <!-- Left Column -->
                 <div class="left-column">
                     <p class="indexP">
-                        <span class="resortName">Pacific Trails Resort</span> offers a special lodging experience on the California North Coast.
+                        We offer a special lodging experience on the California North Coast.
                         Relax in serenity with panoramic views of the Pacific Ocean.
                     </p>
 
@@ -83,7 +91,7 @@
 
                         <div class="feature-card">
                             <i class="fa-solid fa-hot-tub-person"></i>
-                            <p>Heated Pool & Spa</p>
+                            <p>Heated Pool &amp; Spa</p>
                             <small>Unwind in the warmth of our outdoor whirlpool.</small>
                         </div>
 
@@ -103,17 +111,16 @@
             </div>
 
             <div class="video-modal-container">
-                <button id="openVideoModal" class="watch-video-button">Watch Resort Video</button>
+                <button id="openVideoModal" class="watch-video-button">Watch the Resort Experience</button>
             </div>
 
-            <div id="videoModal" class="modal">
+            <div id="videoModal" class="modal" role="dialog" aria-modal="true" aria-label="Pacific Trails Resort video">
                 <div class="modal-content">
-                    <span class="close-button" id="closeVideoModal">&times;</span>
-                    <video controls class="modal-video">
-                        <source src="videos/pacific.mp4" type="video/mp4">
-                        <source src="videos/pacific.ogv" type="video/ogv">
+                    <button type="button" class="close-button" id="closeVideoModal" aria-label="Close video">&times;</button>
+                    <video controls preload="none" class="modal-video" poster="promo-audio&amp;video/Pacific-Trails-Resort-Promo-Cover.jpg">
+                        <source src="promo-audio&amp;video/PacificTrailsResort-Promo-Video.mp4" type="video/mp4">
                         <p>Your browser does not support the video tag.
-                            <a href="videos/pacific.mp4">Download the video</a>
+                            <a href="promo-audio&amp;video/PacificTrailsResort-Promo-Video.mp4">Download the video</a>
                         </p>
                     </video>
                 </div>
@@ -165,25 +172,36 @@
         const closeBtn = document.getElementById("closeVideoModal");
         const video = modal.querySelector("video");
 
-        openBtn.onclick = function() {
-            modal.style.display = "block";
+        const openModal = function() {
+            modal.style.display = "flex";
+            document.body.style.overflow = "hidden";
             video.currentTime = 0;
-            video.play(); // Play only on click
+            video.play().catch(() => {
+                // Autoplay may be blocked on some browsers; user can press play manually.
+            });
         };
 
-        closeBtn.onclick = function() {
+        const closeModal = function() {
             modal.style.display = "none";
+            document.body.style.overflow = "";
             video.pause();
-            video.currentTime = 0; // Optional: reset to beginning
+            video.currentTime = 0;
         };
 
-        window.onclick = function(event) {
+        openBtn.addEventListener("click", openModal);
+        closeBtn.addEventListener("click", closeModal);
+
+        modal.addEventListener("click", function(event) {
             if (event.target === modal) {
-                modal.style.display = "none";
-                video.pause();
-                video.currentTime = 0;
+                closeModal();
             }
-        };
+        });
+
+        window.addEventListener("keydown", function(event) {
+            if (event.key === "Escape" && modal.style.display !== "none") {
+                closeModal();
+            }
+        });
     </script>
 </body>
 
