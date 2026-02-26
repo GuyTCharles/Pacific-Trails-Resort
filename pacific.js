@@ -3,11 +3,22 @@ document.addEventListener('DOMContentLoaded', function() {
     // --- Hamburger/menu logic as before ---
     handleScrollEffect();
     handlePackageClick();
+    setupReservationDateValidation();
 
     const hamburger = document.getElementById('hamburger');
     const mobileNav = document.getElementById('mobileNav');
     const navOverlay = document.getElementById('navOverlay');
     if (hamburger && mobileNav && navOverlay) {
+        const desktopBreakpoint = 851;
+
+        const closeMobileMenu = () => {
+            hamburger.classList.remove('active');
+            mobileNav.classList.remove('active');
+            navOverlay.classList.remove('active');
+            hamburger.setAttribute('aria-expanded', false);
+            document.body.style.overflow = '';
+        };
+
         hamburger.addEventListener('click', function() {
             hamburger.classList.toggle('active');
             mobileNav.classList.toggle('active');
@@ -17,21 +28,13 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
         navOverlay.addEventListener('click', function() {
-            hamburger.classList.remove('active');
-            mobileNav.classList.remove('active');
-            navOverlay.classList.remove('active');
-            hamburger.setAttribute('aria-expanded', false);
-            document.body.style.overflow = '';
+            closeMobileMenu();
         });
 
         // Close menu on mobile nav link click
         document.querySelectorAll('.mobile-nav a').forEach(link => {
             link.addEventListener('click', () => {
-                hamburger.classList.remove('active');
-                mobileNav.classList.remove('active');
-                navOverlay.classList.remove('active');
-                hamburger.setAttribute('aria-expanded', false);
-                document.body.style.overflow = '';
+                closeMobileMenu();
             });
         });
 
@@ -43,11 +46,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 !hamburger.contains(e.target) &&
                 !navOverlay.contains(e.target)
             ) {
-                hamburger.classList.remove('active');
-                mobileNav.classList.remove('active');
-                navOverlay.classList.remove('active');
-                hamburger.setAttribute('aria-expanded', false);
-                document.body.style.overflow = '';
+                closeMobileMenu();
+            }
+        });
+
+        // If the viewport grows to desktop width, always reset mobile menu/overlay state.
+        window.addEventListener('resize', function() {
+            if (window.innerWidth >= desktopBreakpoint) {
+                closeMobileMenu();
             }
         });
     }
@@ -119,16 +125,13 @@ function scrollToPackage(rowId) {
 
 // Geolocation and Trail Button Functions
 function getLocalTrails(position) {
-    const {
-        latitude,
-        longitude
-    } = position.coords;
-    console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
+    void position;
     showButton();
 }
 
 function getUserLocation() {
-    if (navigator.geolocation) {
+    const hasMap = document.getElementById('googleMap');
+    if (hasMap && navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(getLocalTrails);
     }
     // If not supported or denied, nothing happens.
@@ -138,24 +141,26 @@ function showButton() {
     const buttonContainer = document.getElementById('localTrails');
     const existingButton = document.getElementById('viewTrailsButton');
 
-    if (!existingButton) {
-        const button = document.createElement('button');
-        button.textContent = 'EXPLORE OUR NEAREST TRAILS';
-        button.id = 'viewTrailsButton';
-        button.onclick = () => {
-            showMap();
-            setTimeout(() => {
-                $('html, body').animate({
-                    scrollTop: $("#googleMap").offset().top
-                }, 800);
-            }, 0);
-        };
-        button.style.display = 'block';
-        button.style.marginTop = '20px';
-        button.style.fontFamily = 'Arial, sans-serif';
-
-        buttonContainer.appendChild(button);
+    if (!buttonContainer || existingButton) {
+        return;
     }
+
+    const button = document.createElement('button');
+    button.textContent = 'EXPLORE OUR NEAREST TRAILS';
+    button.id = 'viewTrailsButton';
+    button.onclick = () => {
+        showMap();
+        setTimeout(() => {
+            $('html, body').animate({
+                scrollTop: $("#googleMap").offset().top
+            }, 800);
+        }, 0);
+    };
+    button.style.display = 'block';
+    button.style.marginTop = '20px';
+    button.style.fontFamily = 'Arial, sans-serif';
+
+    buttonContainer.appendChild(button);
 }
 
 function showMap() {
@@ -167,8 +172,75 @@ function showMap() {
 
 function hideMap() {
     const googleMapIframe = document.getElementById('googleMap');
-    googleMapIframe.style.display = 'none';
+    if (googleMapIframe) {
+        googleMapIframe.style.display = 'none';
+    }
 }
 
-// Start geolocation on page load
-getUserLocation();
+function setupReservationDateValidation() {
+    const reservationForm = document.querySelector('.reservation-form');
+    const arrivalDateInput = document.getElementById('Date');
+    if (!reservationForm || !arrivalDateInput) {
+        return;
+    }
+
+    const getTodayLocal = () => {
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        return today;
+    };
+
+    const toIsoDate = (date) => {
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+        return `${year}-${month}-${day}`;
+    };
+
+    const parseInputDate = (value) => {
+        if (!value) {
+            return null;
+        }
+
+        const isoMatch = value.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+        if (isoMatch) {
+            const year = Number(isoMatch[1]);
+            const month = Number(isoMatch[2]) - 1;
+            const day = Number(isoMatch[3]);
+            return new Date(year, month, day);
+        }
+
+        const parsed = new Date(value);
+        if (Number.isNaN(parsed.getTime())) {
+            return null;
+        }
+
+        parsed.setHours(0, 0, 0, 0);
+        return parsed;
+    };
+
+    const today = getTodayLocal();
+    arrivalDateInput.setAttribute('min', toIsoDate(today));
+
+    const validateArrivalDate = () => {
+        const selectedDate = parseInputDate(arrivalDateInput.value);
+        const isPastDate = selectedDate && selectedDate < getTodayLocal();
+        arrivalDateInput.setCustomValidity(isPastDate ? 'Please choose today or a future arrival date.' : '');
+    };
+
+    arrivalDateInput.addEventListener('input', validateArrivalDate);
+    arrivalDateInput.addEventListener('change', validateArrivalDate);
+    arrivalDateInput.addEventListener('blur', validateArrivalDate);
+
+    reservationForm.addEventListener('submit', function(event) {
+        validateArrivalDate();
+        if (!reservationForm.checkValidity()) {
+            event.preventDefault();
+            reservationForm.reportValidity();
+        }
+    });
+}
+
+if (document.getElementById('googleMap')) {
+    getUserLocation();
+}
