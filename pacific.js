@@ -114,6 +114,7 @@ function setupActivityImageModal() {
     const modalCaption = document.getElementById('activityModalCaption');
     const closeButton = document.getElementById('closeActivityImageModal');
     const activityImages = document.querySelectorAll('.activity-card .activity-img');
+    let openScrollY = 0;
 
     if (!modal || !modalImage || !modalCaption || !closeButton || activityImages.length === 0) {
         return;
@@ -125,6 +126,7 @@ function setupActivityImageModal() {
         const customCaption = image.dataset.caption ? image.dataset.caption.trim() : '';
         const fallbackCaption = heading ? heading.textContent.trim() : image.alt.trim();
         const captionText = customCaption || fallbackCaption;
+        openScrollY = window.scrollY;
 
         modalImage.src = image.currentSrc || image.src;
         modalImage.alt = image.alt || captionText;
@@ -132,8 +134,15 @@ function setupActivityImageModal() {
 
         modal.classList.add('is-open');
         modal.setAttribute('aria-hidden', 'false');
-        document.body.style.overflow = 'hidden';
-        closeButton.focus();
+
+        const keepViewportPosition = () => {
+            if (Math.abs(window.scrollY - openScrollY) > 1) {
+                window.scrollTo(0, openScrollY);
+            }
+        };
+
+        requestAnimationFrame(keepViewportPosition);
+        window.setTimeout(keepViewportPosition, 60);
     };
 
     const closeModal = () => {
@@ -143,7 +152,6 @@ function setupActivityImageModal() {
 
         modal.classList.remove('is-open');
         modal.setAttribute('aria-hidden', 'true');
-        document.body.style.overflow = '';
         modalImage.removeAttribute('src');
         modalImage.alt = '';
         modalCaption.textContent = '';
