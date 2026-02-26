@@ -113,20 +113,18 @@
             <div class="video-modal-container">
                 <button id="openVideoModal" class="watch-video-button">Watch the Resort Experience</button>
             </div>
-
-            <div id="videoModal" class="modal" role="dialog" aria-modal="true" aria-label="Pacific Trails Resort video">
-                <div class="modal-content">
-                    <button type="button" class="close-button" id="closeVideoModal" aria-label="Close video">&times;</button>
-                    <video controls preload="none" class="modal-video" poster="promo-audio&amp;video/Pacific-Trails-Resort-Promo-Cover.jpg">
-                        <source src="promo-audio&amp;video/PacificTrailsResort-Promo-Video.mp4" type="video/mp4">
-                        <p>Your browser does not support the video tag.
-                            <a href="promo-audio&amp;video/PacificTrailsResort-Promo-Video.mp4">Download the video</a>
-                        </p>
-                    </video>
-                </div>
-            </div>
         </section>
     </main>
+    <div id="videoModal" class="modal" role="dialog" aria-modal="true" aria-label="Pacific Trails Resort video">
+        <div class="modal-content">
+            <button type="button" class="close-button" id="closeVideoModal" aria-label="Close video">&times;</button>
+            <video controls preload="metadata" class="modal-video" poster="media/Pacific-Trails-Resort-Promo-Cover.jpg" src="media/PacificTrailsResort-Promo-Video-faststart.mp4">
+                <p>Your browser does not support the video tag.
+                    <a href="media/PacificTrailsResort-Promo-Video-faststart.mp4">Download the video</a>
+                </p>
+            </video>
+        </div>  
+    </div>
     <footer>
         <div class="footer-container">
             <section class="footer-section contact">
@@ -171,21 +169,102 @@
         const openBtn = document.getElementById("openVideoModal");
         const closeBtn = document.getElementById("closeVideoModal");
         const video = modal.querySelector("video");
+        let pendingCanPlayHandler = null;
+        const initialVideoSrc = video.getAttribute("src");
+        const ua = navigator.userAgent || "";
+        const isDesktopSafari = /Safari/i.test(ua) &&
+            !/Chrome|Chromium|CriOS|Edg|OPR|OPiOS|FxiOS|Android/i.test(ua) &&
+            !/Mobile/i.test(ua);
+        let safariDesktopObjectUrl = "";
+        let safariDesktopSourcePromise = null;
+
+        const removePendingCanPlayHandler = function() {
+            if (pendingCanPlayHandler) {
+                video.removeEventListener("canplay", pendingCanPlayHandler);
+                pendingCanPlayHandler = null;
+            }
+        };
+
+        const playVideo = function() {
+            const playPromise = video.play();
+            if (playPromise && typeof playPromise.catch === "function") {
+                playPromise.catch(() => {
+                    // If autoplay is blocked, controls remain available for manual play.
+                });
+            }
+        };
+
+        const resetVideoToStart = function() {
+            try {
+                video.currentTime = 0;
+            } catch (error) {
+                // Safari desktop can throw if seek happens too early.
+            }
+        };
+
+        const ensureSafariDesktopPlayableSource = function() {
+            if (!isDesktopSafari) {
+                return Promise.resolve();
+            }
+
+            if (safariDesktopObjectUrl) {
+                return Promise.resolve();
+            }
+
+            if (safariDesktopSourcePromise) {
+                return safariDesktopSourcePromise;
+            }
+
+            safariDesktopSourcePromise = fetch(initialVideoSrc, {
+                cache: "no-store"
+            }).then((response) => {
+                if (!response.ok) {
+                    throw new Error(`Video fetch failed: ${response.status}`);
+                }
+                return response.blob();
+            }).then((blob) => {
+                safariDesktopObjectUrl = URL.createObjectURL(blob);
+                video.src = safariDesktopObjectUrl;
+            }).catch(() => {
+                // Keep the original source if blob fallback fails.
+            }).finally(() => {
+                safariDesktopSourcePromise = null;
+            });
+
+            return safariDesktopSourcePromise;
+        };
 
         const openModal = function() {
             modal.style.display = "flex";
             document.body.style.overflow = "hidden";
-            video.currentTime = 0;
-            video.play().catch(() => {
-                // Autoplay may be blocked on some browsers; user can press play manually.
+            removePendingCanPlayHandler();
+
+            ensureSafariDesktopPlayableSource().finally(() => {
+                if (video.readyState >= 2) {
+                    resetVideoToStart();
+                    playVideo();
+                    return;
+                }
+
+                pendingCanPlayHandler = function() {
+                    pendingCanPlayHandler = null;
+                    resetVideoToStart();
+                    playVideo();
+                };
+
+                video.addEventListener("canplay", pendingCanPlayHandler, {
+                    once: true
+                });
+                video.load();
             });
         };
 
         const closeModal = function() {
             modal.style.display = "none";
             document.body.style.overflow = "";
+            removePendingCanPlayHandler();
             video.pause();
-            video.currentTime = 0;
+            resetVideoToStart();
         };
 
         openBtn.addEventListener("click", openModal);
