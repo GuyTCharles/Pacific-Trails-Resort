@@ -223,7 +223,9 @@ function scrollToPackage(rowId) {
     const targetRow = document.getElementById(rowId);
     if (targetRow) {
         const header = document.querySelector('.site-header');
-        const headerOffset = header ? (header.offsetHeight + 14) : 14;
+        const baseHeaderOffset = header ? header.offsetHeight : 0;
+        const topGap = window.innerWidth <= 600 ? 1 : 14;
+        const headerOffset = baseHeaderOffset + topGap;
         const rowTop = targetRow.getBoundingClientRect().top + window.scrollY;
         const scrollTarget = Math.max(rowTop - headerOffset, 0);
 
