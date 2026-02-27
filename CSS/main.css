@@ -1198,7 +1198,6 @@ footer a:focus-visible {
     }
 
     .header-brand {
-        --logo-badge-left: -0.3rem;
         --logo-badge-width: 4.7rem;
         --logo-badge-height: 4.3rem;
     }
@@ -1242,7 +1241,6 @@ footer a:focus-visible {
     }
     
     .header-brand {
-        --logo-badge-left: -0.22rem;
         --logo-badge-width: 4.2rem;
         --logo-badge-height: 3.9rem;
     }
@@ -1417,8 +1415,7 @@ footer a:focus-visible {
     }
 
     .header-brand {
-        --logo-badge-left: -0.14rem;
-        --logo-badge-width: 4rem;
+        --logo-badge-width: 3.953rem;
         --logo-badge-height: 3.6rem;
     }
 
@@ -1467,7 +1464,6 @@ footer a:focus-visible {
 
 @media (max-width: 400px) {
      .header-brand {
-        --logo-badge-left: -0.08rem;
         --logo-badge-width: 3.725rem;
         --logo-badge-height: 3.3rem;
     }
