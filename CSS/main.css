@@ -1224,7 +1224,7 @@ footer a:focus-visible {
     }
 }
 
-@media (max-width: 930px) {
+@media (max-width: 960px) {
     :root {
         --fs-body: 0.97rem;
         --fs-body-lead: 1rem;
@@ -1281,13 +1281,13 @@ footer a:focus-visible {
 }
 
 
-@media (min-width: 851px) {
+@media (min-width: 881px) {
     .mobile-nav {
         display: none !important;
     }
 }
 
-@media (max-width: 850px) {
+@media (max-width: 880px) {
     .nav-links {
         display: none;
     }
