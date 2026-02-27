@@ -725,10 +725,6 @@ tbody td {
     color: var(--ink-700);
 }
 
-tbody tr:hover {
-    background: #f0f6f8;
-}
-
 table tr.selected-package {
     background: #e5f2f4;
 }
