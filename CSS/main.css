@@ -802,8 +802,11 @@ table tr.selected-package {
 }
 
 .activity-image-modal-content {
-    position: relative;
-    width: min(980px, 100%);
+    position: fixed;
+    width: min(980px, calc(100% - 1.6rem));
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
     animation: imageModalZoomOut 0.28s ease both;
 }
 
@@ -1304,7 +1307,7 @@ footer a:focus-visible {
     }
 
     .activity-image-modal-content {
-        width: min(100%, 620px);
+        width: min(calc(100% - 1.3rem), 620px);
     }
 
     .activity-image-full {
@@ -1378,7 +1381,7 @@ footer a:focus-visible {
     #googleMap {
         min-height: 300px;
     }
-}
+
 
 @media (max-width: 400px) {
      .header-logo {
