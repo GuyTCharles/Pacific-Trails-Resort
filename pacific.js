@@ -110,15 +110,40 @@ function handlePackageClick() {
 
 function setupActivityImageModal() {
     const modal = document.getElementById('activityImageModal');
+    const modalContent = modal ? modal.querySelector('.activity-image-modal-content') : null;
     const modalImage = document.getElementById('activityModalImage');
     const modalCaption = document.getElementById('activityModalCaption');
     const closeButton = document.getElementById('closeActivityImageModal');
     const activityImages = document.querySelectorAll('.activity-card .activity-img');
     let previousBodyOverflow = '';
+    let activeTriggerImage = null;
 
-    if (!modal || !modalImage || !modalCaption || !closeButton || activityImages.length === 0) {
+    if (!modal || !modalContent || !modalImage || !modalCaption || !closeButton || activityImages.length === 0) {
         return;
     }
+
+    const imagePlaceholderSrc = modalImage.getAttribute('src') || 'data:image/gif;base64,R0lGODlhAQABAAAAACwAAAAAAQABAAA=';
+
+    const positionModalOverTrigger = () => {
+        if (!activeTriggerImage || !modal.classList.contains('is-open')) {
+            return;
+        }
+
+        const triggerRect = activeTriggerImage.getBoundingClientRect();
+        const contentRect = modalContent.getBoundingClientRect();
+        const edgeGap = window.innerWidth <= 600 ? 10 : 14;
+
+        const maxLeft = Math.max(edgeGap, window.innerWidth - contentRect.width - edgeGap);
+        const maxTop = Math.max(edgeGap, window.innerHeight - contentRect.height - edgeGap);
+        const preferredLeft = triggerRect.left + ((triggerRect.width - contentRect.width) / 2);
+        const preferredTop = triggerRect.top + ((triggerRect.height - contentRect.height) / 2);
+        const modalLeft = Math.min(Math.max(preferredLeft, edgeGap), maxLeft);
+        const modalTop = Math.min(Math.max(preferredTop, edgeGap), maxTop);
+
+        modalContent.style.transform = 'none';
+        modalContent.style.left = `${Math.round(modalLeft)}px`;
+        modalContent.style.top = `${Math.round(modalTop)}px`;
+    };
 
     const openModal = (image) => {
         const activityCard = image.closest('.activity-card');
@@ -126,6 +151,7 @@ function setupActivityImageModal() {
         const customCaption = image.dataset.caption ? image.dataset.caption.trim() : '';
         const fallbackCaption = heading ? heading.textContent.trim() : image.alt.trim();
         const captionText = customCaption || fallbackCaption;
+        activeTriggerImage = image;
 
         modalImage.src = image.currentSrc || image.src;
         modalImage.alt = image.alt || captionText;
@@ -135,6 +161,12 @@ function setupActivityImageModal() {
         modal.classList.add('is-open');
         modal.setAttribute('aria-hidden', 'false');
         document.body.style.overflow = 'hidden';
+        requestAnimationFrame(positionModalOverTrigger);
+        if (!modalImage.complete) {
+            modalImage.addEventListener('load', positionModalOverTrigger, {
+                once: true
+            });
+        }
     };
 
     const closeModal = () => {
@@ -146,7 +178,11 @@ function setupActivityImageModal() {
         modal.setAttribute('aria-hidden', 'true');
         document.body.style.overflow = previousBodyOverflow;
         previousBodyOverflow = '';
-        modalImage.removeAttribute('src');
+        activeTriggerImage = null;
+        modalContent.style.removeProperty('left');
+        modalContent.style.removeProperty('top');
+        modalContent.style.removeProperty('transform');
+        modalImage.src = imagePlaceholderSrc;
         modalImage.alt = '';
         modalCaption.textContent = '';
     };
@@ -176,6 +212,10 @@ function setupActivityImageModal() {
         if (event.key === 'Escape') {
             closeModal();
         }
+    });
+
+    window.addEventListener('resize', () => {
+        positionModalOverTrigger();
     });
 }
 
