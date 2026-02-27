@@ -222,9 +222,14 @@ function setupActivityImageModal() {
 function scrollToPackage(rowId) {
     const targetRow = document.getElementById(rowId);
     if (targetRow) {
-        targetRow.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
+        const header = document.querySelector('.site-header');
+        const headerOffset = header ? (header.offsetHeight + 14) : 14;
+        const rowTop = targetRow.getBoundingClientRect().top + window.scrollY;
+        const scrollTarget = Math.max(rowTop - headerOffset, 0);
+
+        window.scrollTo({
+            top: scrollTarget,
+            behavior: 'smooth'
         });
 
         // Keep the selection highlight permanently
@@ -280,6 +285,25 @@ function showMap() {
     if (googleMapIframe) {
         googleMapIframe.style.display = 'block';
     }
+}
+
+function showMapAndScroll() {
+    const googleMapIframe = document.getElementById('googleMap');
+    if (!googleMapIframe) {
+        return;
+    }
+
+    showMap();
+    requestAnimationFrame(() => {
+        const header = document.querySelector('.site-header');
+        const headerOffset = header ? (header.offsetHeight + 12) : 12;
+        const targetTop = googleMapIframe.getBoundingClientRect().top + window.scrollY - headerOffset;
+
+        window.scrollTo({
+            top: Math.max(targetTop, 0),
+            behavior: 'smooth'
+        });
+    });
 }
 
 function hideMap() {
