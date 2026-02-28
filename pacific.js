@@ -125,6 +125,7 @@ function setupActivityImageModal() {
     const activityImages = document.querySelectorAll('.activity-card .activity-img');
     let previousBodyOverflow = '';
     let activeTriggerImage = null;
+    const imageAnchorBreakpoint = 600;
 
     if (!modal || !modalContent || !modalImage || !modalCaption || !closeButton || activityImages.length === 0) {
         return;
@@ -132,14 +133,25 @@ function setupActivityImageModal() {
 
     const imagePlaceholderSrc = modalImage.getAttribute('src') || 'data:image/gif;base64,R0lGODlhAQABAAAAACwAAAAAAQABAAA=';
 
-    const positionModalOverTrigger = () => {
-        if (!activeTriggerImage || !modal.classList.contains('is-open')) {
+    const positionModalInCenter = () => {
+        modalContent.style.left = '50%';
+        modalContent.style.top = '50%';
+        modalContent.style.transform = 'translate(-50%, -50%)';
+    };
+
+    const positionModal = () => {
+        if (!modal.classList.contains('is-open')) {
+            return;
+        }
+
+        if (window.innerWidth > imageAnchorBreakpoint || !activeTriggerImage) {
+            positionModalInCenter();
             return;
         }
 
         const triggerRect = activeTriggerImage.getBoundingClientRect();
         const contentRect = modalContent.getBoundingClientRect();
-        const edgeGap = window.innerWidth <= 600 ? 10 : 14;
+        const edgeGap = 10;
 
         const maxLeft = Math.max(edgeGap, window.innerWidth - contentRect.width - edgeGap);
         const maxTop = Math.max(edgeGap, window.innerHeight - contentRect.height - edgeGap);
@@ -148,9 +160,9 @@ function setupActivityImageModal() {
         const modalLeft = Math.min(Math.max(preferredLeft, edgeGap), maxLeft);
         const modalTop = Math.min(Math.max(preferredTop, edgeGap), maxTop);
 
-        modalContent.style.transform = 'none';
         modalContent.style.left = `${Math.round(modalLeft)}px`;
         modalContent.style.top = `${Math.round(modalTop)}px`;
+        modalContent.style.transform = 'none';
     };
 
     const openModal = (image) => {
@@ -169,9 +181,9 @@ function setupActivityImageModal() {
         modal.classList.add('is-open');
         modal.setAttribute('aria-hidden', 'false');
         document.body.style.overflow = 'hidden';
-        requestAnimationFrame(positionModalOverTrigger);
+        requestAnimationFrame(positionModal);
         if (!modalImage.complete) {
-            modalImage.addEventListener('load', positionModalOverTrigger, {
+            modalImage.addEventListener('load', positionModal, {
                 once: true
             });
         }
@@ -223,7 +235,7 @@ function setupActivityImageModal() {
     });
 
     window.addEventListener('resize', () => {
-        positionModalOverTrigger();
+        positionModal();
     });
 }
 
