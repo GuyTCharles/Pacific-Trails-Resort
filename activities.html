@@ -6,6 +6,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pacific Trails Resort :: Activities</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="manifest" href="site.webmanifest">
+    <meta name="theme-color" content="#115e71">
     <link rel="stylesheet" href="CSS/main.css">
     <link rel="stylesheet" href="CSS/responsive-design.css">
     <script src="https://kit.fontawesome.com/878ee0d378.js" crossorigin="anonymous"></script>
@@ -170,3 +176,110 @@
 </body>
 
 </html>
+                    <img src="images/mountain-biking.png" alt="Mountain Biking at Pacific Trails" class="activity-img" data-caption="Ride winding mountain trails designed for all skill levels.">
+                    <h3>Mountain Biking</h3>
+                    <p class="activity-desc">
+                        Explore designated biking trails through scenic forest paths and rolling terrain. Perfect for both beginners and experienced riders.
+
+                    </p>
+                </div>
+                
+                <div class="activity-card">
+                    <img src="images/bird-watching.png" alt="Bird Watching at Pacific Trails" class="activity-img" data-caption="Sunrise birdwatching tours led by local nature experts.">
+                    <h3>Bird Watching</h3>
+                    <p class="activity-desc">
+                        While anytime is a good time for bird watching at Pacific Trails Resort, we offer guided birdwatching trips at sunrise several times a week.
+                    </p>
+                </div>
+                
+                <div class="activity-card">
+                    <img src="images/kayaking.png" alt="Kayaking at Pacific Trails" class="activity-img" data-caption="Paddle calm coastal waters with panoramic ocean scenery.">
+                    <h3>Kayaking</h3>
+                    <p class="activity-desc">
+                        Ocean kayaks are available for guest use, allowing you to glide across the gentle waves and discover breathtaking coastal views from a unique perspective.
+                    </p>
+                </div>
+                
+                <div class="activity-card">
+                    <img src="images/fishing.png" alt="Fishing at Pacific Trails" class="activity-img" data-caption="Relaxed shoreline fishing with optional guide support.">
+                    <h3>Fishing</h3>
+                    <p class="activity-desc">
+                        Spend a peaceful morning fishing along the river or nearby lake. Equipment rentals and guided fishing experiences can be available for guests.
+                    </p>
+                </div>
+                
+                <div class="activity-card">
+                    <img src="images/campfire.png" alt="Campfire Evenings at Pacific Trails" class="activity-img" data-caption="Evening campfires with stories, s'mores, and stargazing.">
+                    <h3>Campfire Evenings</h3>
+                    <p class="activity-desc">
+                        Gather around a cozy campfire at sunset. Enjoy storytelling, marshmallow roasting, and relaxing under the stars with family and friends.
+                    </p>
+                </div> 
+            </div>
+            
+            <div class="activity-cta">
+                <button class="local-trails-button" onclick="showMapAndScroll();">
+                    <i class="fa-solid fa-map-location-dot"></i> Find Local Trails
+                </button>
+            </div>
+            
+            <div class="map-container">
+                <iframe id="googleMap" title="Pacific Trails Resort Map" allowfullscreen src="https://www.google.com/maps/d/u/0/embed?mid=1JgZ-T_8wy7oGgZxRf-lIc5saDbc&ll=37.812652572395514%2C-120.11724153722662&z=6">
+                </iframe>
+            </div>
+            
+        </section>
+    </main>
+
+    <div id="activityImageModal" class="activity-image-modal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="activityModalCaption">
+        <div class="activity-image-modal-content">
+            <button type="button" class="activity-image-close" id="closeActivityImageModal" aria-label="Close activity image">&times;</button>
+            <figure class="activity-image-figure">
+                <img id="activityModalImage" class="activity-image-full" src="data:image/gif;base64,R0lGODlhAQABAAAAACwAAAAAAQABAAA=" alt="">
+                <figcaption id="activityModalCaption" class="activity-image-caption"></figcaption>
+            </figure>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-container">
+            <section class="footer-section contact">
+                <h4>Contact Us</h4>
+                <address class="address-links">
+                    Pacific Trails Resort<br>
+                    12010 Pacific Trails Road<br>
+                    Zephyr, CA 95555<br>
+                    <a href="tel:888-555-5555"><i class="fa-solid fa-phone-volume"></i> 888-555-5555</a>
+                </address>
+            </section>
+
+            <section class="footer-section links">
+                <h4>Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html"><i class="fa-solid fa-house"></i> Home</a></li>
+                    <li><a href="yurts.html"><i class="fa-solid fa-campground"></i> Yurts</a></li>
+                    <li><a href="activities.html"><i class="fa-solid fa-person-hiking"></i> Activities</a></li>
+                    <li><a href="reservations.html"><i class="fa-solid fa-calendar-check"></i> Reservations</a></li>
+                </ul>
+            </section>
+
+            <section class="footer-section">
+                <h4>Follow Us</h4>
+                <p>Stay connected with us:</p>
+                <div class="footer-socials">
+                    <a href="https://facebook.com" aria-label="Facebook" class="footer-social facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="https://instagram.com" aria-label="Instagram" class="footer-social instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://twitter.com" aria-label="X (Twitter)" class="footer-social twitter"><i class="fa-brands fa-x-twitter"></i></a>
+                </div>
+            </section>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; <span class="current-year">2026</span> Pacific Trails Resort</p>
+        </div>
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="pacific.js"></script>
+</body>
+
+</html>
+
