@@ -6,10 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Pacific Trails Resort, a special lodging company on the California North Coast. Rent Yurts, go hiking, or relax in the heated pool" />
     <title>Pacific Trails Resort</title>
-    <link rel="icon" type="image/x-icon" href="favicon.ico" />
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
-    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+    <link rel="icon" type="image/x-icon" href="web-icons/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="web-icons/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="web-icons/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="web-icons/apple-touch-icon.png" />
     <link rel="manifest" href="site.webmanifest" />
     <meta name="theme-color" content="#115e71" />
     <!-- Stylesheets -->
@@ -291,3 +291,230 @@
 </body>
 
 </html>
+            <h2>Discover What Awaits You</h2>
+
+            <div class="overview-grid">
+                <!-- Left Column -->
+                <div class="left-column">
+                    <p class="indexP">
+                        We offer a special lodging experience on the California North Coast.
+                        Relax in serenity with panoramic views of the Pacific Ocean.
+                    </p>
+
+                    <!-- Feature Cards -->
+                    <section class="features-section">
+                        <div class="feature-card">
+                            <i class="fa-solid fa-water"></i>
+                            <p>Ocean-view Yurts</p>
+                            <small>Private decks with panoramic Pacific views.</small>
+                        </div>
+
+                        <div class="feature-card">
+                            <i class="fa-solid fa-mug-hot"></i>
+                            <p>Activities Lodge</p>
+                            <small>Relax by the fireplace and explore the gift shop.</small>
+                        </div>
+
+                        <div class="feature-card">
+                            <i class="fa-solid fa-utensils"></i>
+                            <p>Fine Dining</p>
+                            <small>Dine nightly at our elegant Overlook Café.</small>
+                        </div>
+
+                        <div class="feature-card">
+                            <i class="fa-solid fa-hot-tub-person"></i>
+                            <p>Heated Pool &amp; Spa</p>
+                            <small>Unwind in the warmth of our outdoor whirlpool.</small>
+                        </div>
+
+                        <div class="feature-card">
+                            <i class="fa-solid fa-person-hiking"></i>
+                            <p>Guided Hiking</p>
+                            <small>Join expert-led tours through the redwoods.</small>
+                        </div>
+
+                        <div class="feature-card">
+                            <i class="fa-solid fa-fire"></i>
+                            <p>Fireplace Evenings</p>
+                            <small>Starlit nights by crackling fire pits.</small>
+                        </div>
+                    </section>
+                </div>
+            </div>
+
+            <div class="video-modal-container">
+                <button id="openVideoModal" class="watch-video-button">Watch the Resort Experience</button>
+            </div>
+        </section>
+    </main>
+    <div id="videoModal" class="modal" role="dialog" aria-modal="true" aria-label="Pacific Trails Resort video">
+        <div class="modal-content">
+            <button type="button" class="close-button" id="closeVideoModal" aria-label="Close video">&times;</button>
+            <video controls preload="metadata" class="modal-video" poster="media/Pacific-Trails-Resort-Promo-Cover.jpg" src="media/PacificTrailsResort-Promo-Video-faststart.mp4">
+                <p>Your browser does not support the video tag.
+                    <a href="media/PacificTrailsResort-Promo-Video-faststart.mp4">Download the video</a>
+                </p>
+            </video>
+        </div>  
+    </div>
+    <footer>
+        <div class="footer-container">
+            <section class="footer-section contact">
+                <h4>Contact Us</h4>
+                <address class="address-links">
+                    Pacific Trails Resort<br>
+                    12010 Pacific Trails Road<br>
+                    Zephyr, CA 95555<br>
+                    <a href="tel:888-555-5555"><i class="fa-solid fa-phone-volume"></i> 888-555-5555</a>
+                </address>
+            </section>
+
+            <section class="footer-section links">
+                <h4>Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html"><i class="fa-solid fa-house"></i> Home</a></li>
+                    <li><a href="yurts.html"><i class="fa-solid fa-campground"></i> Yurts</a></li>
+                    <li><a href="activities.html"><i class="fa-solid fa-person-hiking"></i> Activities</a></li>
+                    <li><a href="reservations.html"><i class="fa-solid fa-calendar-check"></i> Reservations</a></li>
+                </ul>
+            </section>
+
+            <section class="footer-section">
+                <h4>Follow Us</h4>
+                <p>Stay connected with us:</p>
+                <div class="footer-socials">
+                    <a href="https://facebook.com" aria-label="Facebook" class="footer-social facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="https://instagram.com" aria-label="Instagram" class="footer-social instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://twitter.com" aria-label="X (Twitter)" class="footer-social twitter"><i class="fa-brands fa-x-twitter"></i></a>
+                </div>
+            </section>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; <span class="current-year">2026</span> Pacific Trails Resort</p>
+        </div>
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="pacific.js"></script>
+
+    <script>
+        const modal = document.getElementById("videoModal");
+        const openBtn = document.getElementById("openVideoModal");
+        const closeBtn = document.getElementById("closeVideoModal");
+        const video = modal.querySelector("video");
+        let pendingCanPlayHandler = null;
+        const initialVideoSrc = video.getAttribute("src");
+        const ua = navigator.userAgent || "";
+        const isDesktopSafari = /Safari/i.test(ua) &&
+            !/Chrome|Chromium|CriOS|Edg|OPR|OPiOS|FxiOS|Android/i.test(ua) &&
+            !/Mobile/i.test(ua);
+        let safariDesktopObjectUrl = "";
+        let safariDesktopSourcePromise = null;
+
+        const removePendingCanPlayHandler = function() {
+            if (pendingCanPlayHandler) {
+                video.removeEventListener("canplay", pendingCanPlayHandler);
+                pendingCanPlayHandler = null;
+            }
+        };
+
+        const playVideo = function() {
+            const playPromise = video.play();
+            if (playPromise && typeof playPromise.catch === "function") {
+                playPromise.catch(() => {
+                    // If autoplay is blocked, controls remain available for manual play.
+                });
+            }
+        };
+
+        const resetVideoToStart = function() {
+            try {
+                video.currentTime = 0;
+            } catch (error) {
+                // Safari desktop can throw if seek happens too early.
+            }
+        };
+
+        const ensureSafariDesktopPlayableSource = function() {
+            if (!isDesktopSafari) {
+                return Promise.resolve();
+            }
+
+            if (safariDesktopObjectUrl) {
+                return Promise.resolve();
+            }
+
+            if (safariDesktopSourcePromise) {
+                return safariDesktopSourcePromise;
+            }
+
+            safariDesktopSourcePromise = fetch(initialVideoSrc, {
+                cache: "no-store"
+            }).then((response) => {
+                if (!response.ok) {
+                    throw new Error(`Video fetch failed: ${response.status}`);
+                }
+                return response.blob();
+            }).then((blob) => {
+                safariDesktopObjectUrl = URL.createObjectURL(blob);
+                video.src = safariDesktopObjectUrl;
+            }).catch(() => {
+                // Keep the original source if blob fallback fails.
+            }).finally(() => {
+                safariDesktopSourcePromise = null;
+            });
+
+            return safariDesktopSourcePromise;
+        };
+
+        const openModal = function() {
+            modal.style.display = "flex";
+            document.body.style.overflow = "hidden";
+            removePendingCanPlayHandler();
+
+            ensureSafariDesktopPlayableSource().finally(() => {
+                if (video.readyState >= 2) {
+                    resetVideoToStart();
+                    playVideo();
+                    return;
+                }
+
+                pendingCanPlayHandler = function() {
+                    pendingCanPlayHandler = null;
+                    resetVideoToStart();
+                    playVideo();
+                };
+
+                video.addEventListener("canplay", pendingCanPlayHandler, {
+                    once: true
+                });
+                video.load();
+            });
+        };
+
+        const closeModal = function() {
+            modal.style.display = "none";
+            document.body.style.overflow = "";
+            removePendingCanPlayHandler();
+            video.pause();
+            resetVideoToStart();
+        };
+
+        openBtn.addEventListener("click", openModal);
+        closeBtn.addEventListener("click", closeModal);
+
+        modal.addEventListener("click", function(event) {
+            if (event.target === modal) {
+                closeModal();
+            }
+        });
+
+        window.addEventListener("keydown", function(event) {
+            if (event.key === "Escape" && modal.style.display !== "none") {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+
+</html>
+
