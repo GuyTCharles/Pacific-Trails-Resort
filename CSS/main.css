@@ -122,84 +122,24 @@ img {
     align-items: center;
     text-decoration: none;
     min-width: 0;
-    position: relative;
-    isolation: isolate;
-    --logo-badge-width: 5.13rem;
-    --logo-badge-height: 4.8rem;
-}
-
-.header-brand::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    width: var(--logo-badge-width);
-    height: var(--logo-badge-height);
-    transform: translateY(-50%);
-    border-radius: 50%;
-    border: 1px solid rgba(198, 226, 236, 0.42);
-    background:
-        linear-gradient(155deg, rgba(12, 57, 72, 0.76) 0%, rgba(17, 78, 96, 0.72) 46%, rgba(8, 40, 54, 0.84) 100%),
-        radial-gradient(circle at 18% 14%, rgba(194, 226, 235, 0.18), rgba(194, 226, 235, 0) 50%);
-    box-shadow:
-        inset 0 1px 0 rgba(224, 242, 248, 0.18),
-        inset 0 0 0 1px rgba(222, 242, 248, 0.06),
-        0 12px 24px rgba(4, 19, 26, 0.42),
-        0 2px 10px rgba(8, 49, 63, 0.34);
-    backdrop-filter: blur(6px) saturate(120%);
-    -webkit-backdrop-filter: blur(6px) saturate(120%);
-    z-index: 0;
-    pointer-events: none;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, backdrop-filter 0.2s ease;
-}
-
-.header-brand::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    width: var(--logo-badge-width);
-    height: var(--logo-badge-height);
-    transform: translateY(-50%);
-    border-radius: 50%;
-    background: linear-gradient(125deg, rgba(245, 252, 255, 0.24) 0%, rgba(234, 247, 251, 0.08) 40%, rgba(255, 255, 255, 0) 62%);
-    opacity: 0.42;
-    pointer-events: none;
-    z-index: 1;
-    transition: opacity 0.2s ease;
-}
-
-.header-brand:hover::before,
-.header-brand:focus-visible::before {
-    border-color: rgba(235, 210, 173, 0.62);
-    background:
-        linear-gradient(155deg, rgba(18, 72, 88, 0.78) 0%, rgba(24, 93, 112, 0.74) 47%, rgba(11, 49, 64, 0.86) 100%),
-        radial-gradient(circle at 18% 14%, rgba(230, 241, 245, 0.2), rgba(230, 241, 245, 0) 50%);
-    box-shadow:
-        inset 0 1px 0 rgba(234, 245, 248, 0.2),
-        inset 0 0 0 1px rgba(240, 223, 196, 0.12),
-        0 14px 28px rgba(4, 19, 26, 0.44),
-        0 2px 11px rgba(14, 76, 93, 0.36);
-    backdrop-filter: blur(7px) saturate(126%);
-    -webkit-backdrop-filter: blur(7px) saturate(126%);
-}
-
-.header-brand:hover::after,
-.header-brand:focus-visible::after {
-    opacity: 0.56;
 }
 
 .header-logo {
-    height: 80px;
-    transform: scale(1.2) !important;
-    transform-origin: left center;
+    width: 84px;
+    height: 84px;
     object-fit: contain;
-    object-position: center;
+    object-position: center center;
     filter: drop-shadow(0 8px 14px rgba(5, 23, 30, 0.26));
-    position: relative;
-    z-index: 2;
     flex-shrink: 0;
-    padding: 1px; 
-    margin-left: -7px;
-    margin-right: 2rem;
+    padding: 0;
+    margin: 0 1.25rem 0 0;
+    border-radius: 50%;
+    transform: none !important;
+}
+
+.header-brand:hover .header-logo,
+.header-brand:focus-visible .header-logo {
+    filter: drop-shadow(0 10px 18px rgba(5, 23, 30, 0.3));
 }
 
 .header-brand-copy {
@@ -1195,16 +1135,10 @@ footer a:focus-visible {
         --fs-hero-subtitle: 1.12rem;
     }
 
-    .header-brand {
-        --logo-badge-width: 4.88rem;
-        --logo-badge-height: 4.6rem;
-    }
-
     .header-logo {
-        transform: scale(1.15) !important;
-        transform-origin: left center;
-        padding: 1px;
-        margin-right: 1.6rem;
+        width: 78px;
+        height: 78px;
+        margin-right: 1.05rem;
     }
 
     .features-section {
@@ -1238,16 +1172,10 @@ footer a:focus-visible {
         --fs-hero-subtitle: 1.03rem;
     }
     
-    .header-brand {
-        --logo-badge-width: 4.37rem;
-        --logo-badge-height: 4.3rem;
-    }
-
     .header-logo {
-        transform: scale(1.05) !important;
-        transform-origin: left center;
-        padding: 1px;
-        margin-right: 1rem;
+        width: 72px;
+        height: 72px;
+        margin-right: 0.8rem;
     }
     
 
@@ -1411,19 +1339,10 @@ footer a:focus-visible {
         padding: 0.36rem 0;
     }
 
-    .header-brand {
-        --logo-badge-width: 4.05rem;
-        --logo-badge-height: 4rem;
-    }
-
-
     .header-logo {
-        transform: scale(.95) !important;
-        transform-origin: left center;
-        padding: .5px;
-        margin-left: -.3rem;
-        margin-right: .4rem;
-
+        width: 62px;
+        height: 62px;
+        margin-right: 0.45rem;
     }
 
     .packageChoice figcaption {
@@ -1463,15 +1382,10 @@ footer a:focus-visible {
 }
 
 @media (max-width: 400px) {
-     .header-brand {
-        --logo-badge-width: 3.8rem;
-        --logo-badge-height: 3.8rem;
-    }
-
      .header-logo {
-        transform: scale(.9) !important;
-        transform-origin: left center;
-        margin-right: .1rem;
+        width: 52px;
+        height: 52px;
+        margin-right: 0.25rem;
     }
     
     .header-brand-tagline {
