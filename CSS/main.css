@@ -124,7 +124,7 @@ img {
     min-width: 0;
     position: relative;
     isolation: isolate;
-    --logo-badge-width: 5.1rem;
+    --logo-badge-width: 5.13rem;
     --logo-badge-height: 4.8rem;
 }
 
@@ -1196,7 +1196,7 @@ footer a:focus-visible {
     }
 
     .header-brand {
-        --logo-badge-width: 4.85rem;
+        --logo-badge-width: 4.88rem;
         --logo-badge-height: 4.6rem;
     }
 
@@ -1239,7 +1239,7 @@ footer a:focus-visible {
     }
     
     .header-brand {
-        --logo-badge-width: 4.4rem;
+        --logo-badge-width: 4.37rem;
         --logo-badge-height: 4.3rem;
     }
 
