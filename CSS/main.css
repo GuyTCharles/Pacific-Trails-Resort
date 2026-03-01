@@ -1175,7 +1175,7 @@ footer a:focus-visible {
     .header-logo {
         width: 72px;
         height: 72px;
-        margin-right: 0.8rem;
+        margin-right: 1rem;
     }
     
 
@@ -1342,7 +1342,7 @@ footer a:focus-visible {
     .header-logo {
         width: 62px;
         height: 62px;
-        margin-right: 0.45rem;
+        margin-right: 0.86rem;
     }
 
     .packageChoice figcaption {
@@ -1385,7 +1385,7 @@ footer a:focus-visible {
      .header-logo {
         width: 52px;
         height: 52px;
-        margin-right: 0.25rem;
+        margin-right: 0.80rem;
     }
     
     .header-brand-tagline {
