@@ -962,6 +962,79 @@ table tr.selected-package {
     margin-top: 0.5rem;
 }
 
+.reservation-confirmation {
+    width: min(760px, 100%);
+    margin: 0 auto;
+    display: grid;
+    gap: 1rem;
+}
+
+.reservation-summary-card {
+    margin: 0;
+}
+
+.reservation-summary-card h3 {
+    color: var(--brand-700);
+    margin-bottom: 0.45rem;
+}
+
+.reservation-submitted-on {
+    color: var(--ink-500);
+    margin-bottom: 0.8rem;
+}
+
+.reservation-summary-empty {
+    color: var(--ink-700);
+    margin: 0;
+}
+
+.reservation-summary-list {
+    display: grid;
+    grid-template-columns: minmax(120px, 220px) minmax(0, 1fr);
+    gap: 0.68rem 0.85rem;
+    margin: 0;
+}
+
+.reservation-summary-list dt {
+    margin: 0;
+    color: var(--brand-700);
+    font-weight: 800;
+    align-self: center;
+}
+
+.reservation-summary-list dd {
+    margin: 0;
+    color: var(--ink-900);
+    background: #f8fbfc;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    padding: 0.55rem 0.7rem;
+    line-height: 1.45;
+    white-space: pre-line;
+    min-height: 2.55rem;
+    display: flex;
+    align-items: center;
+}
+
+.reservation-summary-message {
+    align-items: flex-start !important;
+}
+
+.reservation-confirmation-actions {
+    display: flex;
+    gap: 0.7rem;
+    flex-wrap: wrap;
+}
+
+.reservation-confirmation-link {
+    text-decoration: none;
+}
+
+.reservation-confirmation-link.secondary {
+    color: #103040;
+    background: linear-gradient(145deg, #dbe9ee 0%, #c8dbe2 100%);
+}
+
 footer {
     background: linear-gradient(165deg, #0b3d4a 0%, #0f5666 55%, #1a7283 100%);
     color: #ebf8fa;
@@ -1259,6 +1332,23 @@ footer a:focus-visible {
 
     .footer-container {
         grid-template-columns: 1fr;
+    }
+
+    .reservation-summary-list {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+    }
+
+    .reservation-summary-list dt {
+        align-self: end;
+    }
+
+    .reservation-summary-list dd {
+        min-height: auto;
+    }
+
+    .reservation-confirmation-actions {
+        flex-direction: column;
     }
 
     .footer-section {
