@@ -916,7 +916,7 @@ table tr.selected-package {
     border-radius: var(--radius-sm);
     border: 1.5px solid var(--line);
     background: #f8fbfc;
-    padding: 1.05rem 0.92rem 0.65rem;
+    padding: 1rem 0.90rem 0.65rem;
     color: var(--ink-900);
     outline: none;
     transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
@@ -938,8 +938,8 @@ table tr.selected-package {
 
 .reservation-form label {
     position: absolute;
-    top: 0.9rem;
-    left: 0.85rem;
+    top: 0.45rem;
+    left: 0.6rem;
     background: transparent;
     color: var(--ink-500);
     pointer-events: none;
